@@ -1,46 +1,40 @@
-# Introdução
+# Documentação de Contexto
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+## Introdução
+
+O **Sistema de Gestão de Resíduos** é um software desenvolvido para auxiliar empresas e condomínios na separação e gestão de resíduos sólidos. A plataforma oferece informações sobre reciclagem e compostagem, além de fornecer dicas personalizadas para o descarte correto dos materiais. O diferencial do sistema é a integração com a **IA Gemini**, que permite responder dúvidas e oferecer sugestões em tempo real, aumentando a conscientização sobre a destinação adequada dos resíduos.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+O descarte incorreto de resíduos sólidos é um problema ambiental significativo, resultando em impactos negativos como poluição do solo e da água, além do desperdício de materiais recicláveis. Empresas e condomínios enfrentam dificuldades na separação adequada dos resíduos devido à falta de conhecimento sobre os processos de reciclagem e compostagem.
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Atualmente, muitas iniciativas de gestão de resíduos dependem de manuais ou instruções fixas, que nem sempre atendem às necessidades dinâmicas dos usuários. Isso resulta na adoção de práticas inadequadas, prejudicando os esforços de sustentabilidade. O **Sistema de Gestão de Resíduos** visa solucionar essa questão, fornecendo um suporte interativo e informativo para melhorar o descarte consciente de materiais.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+### Objetivo Geral
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Desenvolver um software que auxilie empresas e condomínios na separação e gestão de resíduos sólidos, promovendo práticas sustentáveis por meio da reciclagem e compostagem.
+
+### Objetivos Específicos
+
+- Implementar uma plataforma que disponibilize informações acessíveis e educativas sobre descarte correto de resíduos;
+- Integrar um sistema de IA para responder dúvidas e oferecer sugestões personalizadas sobre reciclagem e compostagem;
+- Reduzir o impacto ambiental gerado pelo descarte inadequado de resíduos;
+- Incentivar a adoção de práticas sustentáveis em ambientes corporativos e residenciais.
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+A crescente geração de resíduos e a inadequada destinação de materiais recicláveis são desafios ambientais urgentes. Muitos locais não possuem sistemas eficazes para orientar a separação de resíduos, o que compromete os processos de reciclagem e aumenta a quantidade de lixo em aterros sanitários.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A implementação do **Sistema de Gestão de Resíduos** busca suprir essa lacuna ao oferecer um suporte interativo baseado em inteligência artificial, garantindo que os usuários tenham acesso a informações precisas e relevantes sobre práticas sustentáveis. Com isso, espera-se aumentar a conscientização ambiental e promover mudanças significativas na maneira como empresas e condomínios lidam com seus resíduos sólidos.
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O sistema será direcionado a dois principais perfis de usuários:
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual.
+1. **Empresas e gestores condominiais**: responsáveis pela implementação de práticas sustentáveis em ambientes corporativos e residenciais;
+2. **Moradores e funcionários**: indivíduos que precisam de orientação para realizar o descarte correto dos resíduos e adotar hábitos mais sustentáveis.
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+Além disso, o software será desenvolvido com uma interface intuitiva para atender a diferentes níveis de conhecimento sobre o tema, garantindo acessibilidade e facilidade de uso.
+
