@@ -29,16 +29,18 @@ Lembre-se de classificá-los de acordo com a prioridade: ALTA, MÉDIA ou BAIXA.
 
 |ID    | Descrição do Requisito                  | Prioridade |
 |------|-----------------------------------------|------------|
-|RF-001| Permitir que o usuário cadastre tarefas |    ALTA    | 
-|RF-002| Emitir um relatório de tarefas no mês   |    MÉDIA   |
+|RF-001| O portal deve exibir cards clicáveis que enviam prompts pré-definidos diretamente para a IA Gemini. |    MÉDIA    | 
+|RF-002| O sistema deve permitir que o usuário envie perguntas personalizadas para a IA através de um campo de texto.   |    MÉDIA   |
+|RF-003| O portal deve exibir respostas da IA em tempo real na própria página.   |    ALTA   |
+|RF-004| Deve haver uma seção com informações sobre reciclagem e compostagem que são geradas automaticamente ao entrar na página.  |    ALTA   |
 
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito                                            |Prioridade |
 |-------|-------------------------------------------------------------------|-----------|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel |    MÉDIA  | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s             |    BAIXA  | 
+|RNF-001| O sistema deve ser responsivo para dispositivos móveis e desktop |    BAIXA  | 
+|RNF-002| A interface deve ser simples, intuitiva e acessível para todos os públicos.  |    ALTA  | 
 
 
 
@@ -50,8 +52,10 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                               |
 |--|---------------------------------------------------------|
-|01| O software deve ser compatível com Windows e Linux.     |
-|02| O sistema deve ser desenvolvido utilizando Java e MySQL.|
+|01| O sistema não deve utilizar banco de dados para armazenamento de informações.     |
+|02| O sistema não deve exigir nenhum tipo de autenticação ou cadastro do usuário.|
+|03| O sistema não deve armazenar ou processar dados pessoais dos usuários.|
+|04| O sistema deve funcionar em navegadores modernos (Chrome, Firefox, Edge e Safari).|
 
 **Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.**
 
