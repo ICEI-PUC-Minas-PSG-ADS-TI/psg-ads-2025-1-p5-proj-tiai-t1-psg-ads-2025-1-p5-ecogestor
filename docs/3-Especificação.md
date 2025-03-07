@@ -58,7 +58,7 @@
 
 ## Tarefas Técnicas (Tasks)
 
-Cada história do usuário é dividida em tarefas específicas para implementação, conforme o exemplo abaixo:
+Cada história do usuário é dividida em tarefas específicas para implementação:
 
 ### História de Usuário:
 **Como usuário, quero acessar informações sobre reciclagem e compostagem para melhorar minha separação de resíduos.**
@@ -68,5 +68,9 @@ Cada história do usuário é dividida em tarefas específicas para implementaç
 - Implementar carregamento automático de informações ao acessar a página.
 - Integrar com IA Gemini para fornecer sugestões adicionais.
 
-Se precisar de ajustes ou mais histórias, me avise!
+### História de Usuário:
+**Como usuário, quero enviar perguntas personalizadas para IA para esclarecer dúvidas específicas sobre reciclagem.**
 
+#### Tarefas Técnicas:
+- Criar interface da seção onde terá o chat específico.
+- Criar um prompt que bloqueia qualquer interação que não tenha haver com reciclagem e compostagem.
