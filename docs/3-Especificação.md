@@ -24,12 +24,13 @@
 |RF-002| O sistema deve permitir que o usuário envie perguntas personalizadas para a IA através de um campo de texto.   |    MÉDIA   |
 |RF-003| O portal deve exibir respostas da IA em tempo real na própria página.   |    ALTA   |
 |RF-004| Deve haver uma seção com informações sobre reciclagem e compostagem que são geradas automaticamente ao entrar na página.  |    ALTA   |
+|RF-005| O portal deve exibir noticias reais que não são geradas por IA.  |  MEDIA  |
 
 ### Requisitos não Funcionais
 
 | ID     | Descrição do Requisito                                            | Prioridade |
 |-------|-------------------------------------------------------------------|-----------|
-|RNF-001| O sistema deve ser responsivo para dispositivos móveis e desktop |    BAIXA  |
+|RNF-001| O sistema deve ser responsivo para dispositivos móveis e desktop. |    BAIXA  |
 |RNF-002| A interface deve ser simples, intuitiva e acessível para todos os públicos.  |    ALTA  |
 
 ### Restrições
