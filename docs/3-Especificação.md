@@ -25,6 +25,7 @@
 |RF-003| O portal deve exibir respostas da IA em tempo real na própria página.   |    ALTA   |
 |RF-004| Deve haver uma seção com informações sobre reciclagem e compostagem que são geradas automaticamente ao entrar na página.  |    ALTA   |
 |RF-005| O portal deve exibir noticias reais que não são geradas por IA.  |  MEDIA  |
+|RF-006| O sistema não deve permitir que usuários enviem preguntas personalizadas para IA que estejam fora do contexto. |   MÉDIA   |
 
 ### Requisitos não Funcionais
 
@@ -54,7 +55,7 @@
 | Usuário do sistema  | Enviar perguntas personalizadas para a IA | Esclarecer dúvidas específicas sobre reciclagem  |
 | Administrador do site | Criar novos cards de informações | Atualizar o conteúdo conforme necessidade  |
 | Usuário do sistema  | Receber respostas da IA em tempo real | Ter informações rápidas e precisas sobre resíduos |
-| Usuário do sistema  | Acessar o site em qualquer dispositivo | Ter praticidade no uso |
+| Usuário do sistema  | Acessar o site em qualquer dispositivo mantendo a qualidade do portal, podendo ser meu computador ou celular | Ter praticidade no uso e poder acessar ao portal de qualquer lugar |
 
 ## Tarefas Técnicas (Tasks)
 
