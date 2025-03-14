@@ -75,3 +75,27 @@ Cada história do usuário é dividida em tarefas específicas para implementaç
 #### Tarefas Técnicas:
 - Criar interface da seção onde terá o chat específico.
 - Criar um prompt que bloqueia qualquer interação que não tenha haver com reciclagem e compostagem.
+
+### História de Usuário:
+**Como administrador do site, quero criar novos cards de informações para atualizar o conteúdo conforme necessidade.**
+
+#### Tarefas Técnicas:
+- Criar painel administrativo para gerenciamento de cards.
+
+### História de Usuário:
+**Como usuário, quero receber respostas da IA em tempo real para ter informações rápidas e precisas sobre resíduos.**
+
+#### Tarefas Técnicas:
+- Exibir mensagens amigáveis enquanto a IA processa a resposta.
+- Criar um sistema de cache para reutilizar respostas comuns e agilizar o retorno.
+- Implementar logs de desempenho para monitorar tempos de resposta da IA.
+
+### História de Usuário:
+**Como usuário, quero acessar o site em qualquer dispositivo mantendo a qualidade do portal, podendo ser meu computador ou celular, para ter praticidade no uso e poder acessar ao portal de qualquer lugar.**
+
+#### Tarefas Técnicas:
+- Criar um layout responsivo utilizando bootstrap e css puro.
+- Testar o site em diferentes dispositivos e navegadores.
+- Implementar um sistema de adaptação da interface para telas pequenas.
+
+
