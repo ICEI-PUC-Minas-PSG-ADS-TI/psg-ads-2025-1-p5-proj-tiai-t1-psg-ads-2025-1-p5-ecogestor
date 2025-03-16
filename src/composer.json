@@ -1,0 +1,8 @@
+{
+    "name": "ecogestor/app",
+    "autoload": {
+        "psr-4":{
+            "App\\": "app/"
+        }
+    }
+}
