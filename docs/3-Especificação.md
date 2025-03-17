@@ -3,18 +3,17 @@
 <span style="color:red"><a href="2-Planejamento-Projeto.md"> Planejamento do Projeto do Software (Cronograma) </a></span>
 
 > Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição das histórias de usuários, dos requisitos funcionais e não funcionais além das restrições do projeto.
-
 Este documento abordará a definição das histórias de usuários, os requisitos funcionais e não funcionais, bem como as restrições do projeto.
 
 Para realizar as especificações, serão utilizadas as seguintes técnicas e ferramentas:
 
-Técnicas de Elicitação de Requisitos: Entrevistas e brainstorming com stakeholders.
+__Técnicas de Elicitação de Requisitos:__ Entrevistas e brainstorming com stakeholders.
 
-Técnicas e Ferramentas:
+__Ferramentas:__
 
-Trello: Para organização e acompanhamento das tarefas e dos sprints.
+- Trello: Para organização e acompanhamento das tarefas e dos sprints.
 
-Scrum: Para gerenciar o desenvolvimento do projeto de forma ágil e iterativa.
+- Scrum: Para gerenciar o desenvolvimento do projeto de forma ágil e iterativa.
 
 ## 3.1 Classificação dos Requisitos Funcionais x Requisitos Não Funcionais
 
