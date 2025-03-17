@@ -4,7 +4,17 @@
 
 > Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição das histórias de usuários, dos requisitos funcionais e não funcionais além das restrições do projeto.
 
-> Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificação do projeto.
+Este documento abordará a definição das histórias de usuários, os requisitos funcionais e não funcionais, bem como as restrições do projeto.
+
+Para realizar as especificações, serão utilizadas as seguintes técnicas e ferramentas:
+
+Técnicas de Elicitação de Requisitos: Entrevistas e brainstorming com stakeholders.
+
+Técnicas e Ferramentas:
+
+Trello: Para organização e acompanhamento das tarefas e dos sprints.
+
+Scrum: Para gerenciar o desenvolvimento do projeto de forma ágil e iterativa.
 
 ## 3.1 Classificação dos Requisitos Funcionais x Requisitos Não Funcionais
 
