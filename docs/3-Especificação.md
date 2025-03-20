@@ -36,6 +36,7 @@ __Ferramentas:__
 |RF-004| Deve haver uma seção com informações sobre reciclagem e compostagem que são geradas automaticamente ao entrar na página.  |    ALTA   |
 |RF-005| O portal deve exibir noticias reais que não são geradas por IA.  |  MEDIA  |
 |RF-006| O sistema não deve permitir que usuários enviem preguntas personalizadas para IA que estejam fora do contexto. |   MÉDIA   |
+|RF-007| O sistema deve gerar um passo a passo para cada processo de reciclagem. |   MÉDIA   |
 
 ### Requisitos não Funcionais
 
