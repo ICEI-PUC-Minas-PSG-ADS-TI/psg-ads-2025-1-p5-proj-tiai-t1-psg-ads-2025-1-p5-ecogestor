@@ -42,7 +42,7 @@ __Ferramentas:__
 
 | ID     | Descrição do Requisito                                            | Prioridade |
 |-------|-------------------------------------------------------------------|-----------|
-|RNF-001| O sistema deve ser responsivo para dispositivos móveis e desktop. |    BAIXA  |
+|RNF-001| O sistema deve ser responsivo para desktop. |    BAIXA  |
 |RNF-002| A interface deve ser simples, intuitiva e acessível para todos os públicos.  |    ALTA  |
 
 ### Restrições
@@ -52,7 +52,7 @@ __Ferramentas:__
 |01| O sistema não deve utilizar banco de dados para armazenamento de informações.     |
 |02| O sistema não deve exigir nenhum tipo de autenticação ou cadastro do usuário.|
 |03| O sistema não deve armazenar ou processar dados pessoais dos usuários.|
-|04| O sistema deve funcionar em navegadores modernos (Chrome, Firefox, Edge e Safari).|
+|04| O sistema deve funcionar em navegadores modernos (Chrome, Edge).|
 
 ## 3.2 Histórias de Usuários
 
