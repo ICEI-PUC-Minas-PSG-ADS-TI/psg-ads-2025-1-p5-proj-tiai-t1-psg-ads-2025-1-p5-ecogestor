@@ -52,7 +52,7 @@ __Ferramentas:__
 
 | ID | Restrição                                               |
 |--|---------------------------------------------------------|
-|01| O sistema não deve utilizar banco de dados para armazenamento de informações.     |
+|01| O sistema deve utilizar api Gemini.     |
 |02| O sistema não deve exigir nenhum tipo de autenticação ou cadastro do usuário.|
 |03| O sistema não deve armazenar ou processar dados pessoais dos usuários.|
 |04| O sistema deve funcionar em navegadores modernos (Chrome, Firefox).|
