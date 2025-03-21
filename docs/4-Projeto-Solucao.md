@@ -43,18 +43,9 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 > - [Diagramas de Classes - Documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.6.1?topic=diagrams-class)
 > - [O que é um diagrama de classe UML? | Lucidchart](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
 
-## Modelo ER
-
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER”.
-
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-
-
 ### 4.3. Modelo de dados
 
-Não será utilizado no projeto banco de dados, pois o projeto não necessita de guardar qualquer informação devido a utilização de APIs para compor as informações disponibilizadas no portal. Será utilizado API de noticias e a API do Gemini.
+Não será utilizado no projeto um banco de dados, pois o projeto não necessita de guardar qualquer informação devido a utilização de APIs para compor as informações disponibilizadas no portal. Será utilizado API de noticias e a API do Gemini.
 
 ### 4.4. Tecnologias
 
