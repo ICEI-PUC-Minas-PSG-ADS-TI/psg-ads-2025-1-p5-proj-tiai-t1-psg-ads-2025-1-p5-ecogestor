@@ -1,0 +1,7 @@
+# Ignorar .env
+.env
+
+# Ignorar diretórios e arquivos específicos
+.vscode/
+src/vendor/
+src/node_modules/
