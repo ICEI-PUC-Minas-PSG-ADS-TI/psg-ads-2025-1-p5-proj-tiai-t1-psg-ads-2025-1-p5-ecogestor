@@ -7,7 +7,11 @@ use \App\Utils\View;
 class Home extends AbstractController{
 
     public static function index(){
-        return View::render('home', ['name' => 'bernardo', 'idade' => 22]);
-        // return 'Olá Mundo';
+
+        $conteudo = View::render('home', ['name' => 'daniel', 'idade' => 11]);
+
+        return self::getBase('Home', $conteudo);
+
     }
+
 }
