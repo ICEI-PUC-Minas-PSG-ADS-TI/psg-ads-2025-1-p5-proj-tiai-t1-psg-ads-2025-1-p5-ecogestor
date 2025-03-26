@@ -24,15 +24,14 @@ class View{
     public static function render($view, $vars = []){
         //conteúdo da view
         $contentView = self::getContentView($view);
+        // var_dump($contentView);
+        // exit;
         //Chaves do array de variaveis
         $keys = array_keys($vars);
         $keys = array_map(function($item){
             return '{{'.$item.'}}';
         }, $keys);
 
-        // echo "<pre>";
-        // print_r($view);
-        // echo "</pre>";
         //retorna o conteúdo renderizado
         return str_replace($keys, array_values($vars), $contentView);
     }
