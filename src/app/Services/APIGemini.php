@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Services;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -16,10 +16,10 @@ class APIGemini
     private $url;
     private $client;
 
-    function __construct($api_key)
+    function __construct()
     {
         // Define a chave da API e a URL
-        $this->api_key = $api_key;
+        $this->api_key = $_ENV['NEWS_API_KEY'];
         $this->url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" . $this->api_key;
 
         // Cria o cliente Guzzle

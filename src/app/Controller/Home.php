@@ -3,14 +3,27 @@
 namespace App\Controller;
 
 use \App\Utils\View;
+use \App\Services\APINews;
+use \App\Services\APIGemini;
 
 class Home extends AbstractController{
 
     public static function index(){
+        try {
+            $api = new APINews();
+        } catch (\Throwable $th) {
+            echo($th->getMessage());
+        }
+
+        $noticia = $api->get('Compostagem')['noticias'][0];
         
         $data = [
-            'name' => 'arthur',
-            'idade' => 10
+            'titulo' => $noticia['title'],
+            'imagem' => $noticia['urlToImage'],
+            'url'    => $noticia['url'],
+            'autor'  => $noticia['source']['name'],
+            'descricao' => $noticia['description'],
+            'data'      => date('d/m/Y', strtotime($noticia['publishedAt']))
         ];
     
         $conteudo = View::render('home', $data);

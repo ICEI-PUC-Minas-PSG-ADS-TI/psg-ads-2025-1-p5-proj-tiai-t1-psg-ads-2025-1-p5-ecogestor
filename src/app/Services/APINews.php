@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Services;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -16,10 +16,10 @@ class APINews
     private $url;
     private $client;
 
-    function __construct($api_key)
+    function __construct()
     {
         // Define a chave da API e a URL
-        $this->api_key = $api_key;
+        $this->api_key = $_ENV['NEWS_API_KEY'];
         $this->url = "https://newsapi.org/v2/everything?language=pt&apiKey=" . $this->api_key;
 
         // Cria o cliente Guzzle
@@ -43,7 +43,7 @@ class APINews
         return [
             'status' => $response['status'],
             'totalResults' => $response['totalResults'],
-            'articles' => $response['articles']
+            'noticias' => $response['articles']
         ];
     }
 }
