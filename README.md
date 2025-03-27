@@ -35,7 +35,7 @@ O projeto tem como objetivo reduzir o impacto ambiental causado pelo descarte in
 
 Assim que a primeira versão do sistema estiver disponível, esta seção será atualizada com as instruções de instalação, dependências necessárias e como executar a aplicação.
 
-## Documentação
+## Documentaçã
 
 <ol>
 <li><a href="docs/1-Contexto.md"> Documentação de Contexto</a></li>
