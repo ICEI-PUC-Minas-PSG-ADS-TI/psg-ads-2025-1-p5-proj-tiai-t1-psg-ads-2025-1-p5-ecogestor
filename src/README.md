@@ -1,6 +1,6 @@
 # Código-fonte do projeto
 
-# Requisitos da Aplicação:
+# Dependências da Aplicação:
  Instale antes de usar o projeto.
 
 # PHP 8.2.12
