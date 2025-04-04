@@ -36,7 +36,7 @@ São protótipos usados em design de interface para sugerir a estrutura de um si
 
 ## Diagrama de Classes
 
-![image](https://github.com/user-attachments/assets/a8886155-6a50-4bf4-8f01-9f316a3a3cbb)
+![image](https://github.com/user-attachments/assets/119edf7c-54ca-4e90-af99-25fe00425790)
 
 ### 4.3. Modelo de dados
 
