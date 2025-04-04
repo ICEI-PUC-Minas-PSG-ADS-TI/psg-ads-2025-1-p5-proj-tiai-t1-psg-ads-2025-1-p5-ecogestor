@@ -4,11 +4,21 @@
 
 ## 4.1. Arquitetura da solução
 
+### Camadas da Arquitetura:
 
-......  COLOQUE AQUI O SEU TEXTO E O DIAGRAMA DE ARQUITETURA .......
+- Frontend:
+  O frontend é responsável pela interface gráfica do usuário e a interação com o sistema. Ele inclui:
+  - HTML para a estrutura das páginas.
+  - CSS e Bootstrap para estilização e design responsivo.
+  - JavaScript para interatividade e manipulação do DOM.
+    
+- Backend:
+  O backend gerencia a lógica da aplicação, manipulação de dados e integração com APIs externas. Ele inclui:
+  - PHP como linguagem principal, seguindo o padrão MVC para organizar a aplicação.
+  - Manipulação de rotas para definir quais controladores e métodos serão executados em cada requisição.
+  - Integração com APIs como a API Gemini para IA e a API News para notícias.
 
- Inclua um diagrama da solução e descreva os módulos e as tecnologias
- que fazem parte da solução. Discorra sobre o diagrama.
+Geração dinâmica de páginas através de templates. 
  
  **Exemplo do diagrama de Arquitetura**:
  
