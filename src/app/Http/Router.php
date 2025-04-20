@@ -4,6 +4,8 @@ namespace App\Http;
 
 use \Closure;
 use \Exception;
+use Reflection;
+use \ReflectionFunction;
 
 class Router{
 
@@ -75,17 +77,14 @@ class Router{
         // Padrão de validação das variaveis das rotas
         $patternVariable = '/{(.*?)}/';
 
-        //estou com problema aqui, por algum motivo o $route ta vindo so com "/"
-        // e nao com a rota enviada como argumento no get(/pagina/{idPagina})
-        // entao o Regex nao consegue pegar os parametros de rota
         if (preg_match_all($patternVariable, $route, $matches)) {
-            $route = preg_replace($patternVariable, '/(.*?)/', $route);
+            $route = preg_replace($patternVariable, '(.*?)', $route);
             $params['variables'] = $matches[1];
         }
 
         // Padrão de validação da URL
         $patternRoute = '/^'.str_replace('/', '\/', $route).'$/';
-        
+
         // Adiciona a rota dentro da classe
         $this->routes[$patternRoute][$method] = $params;
     }
@@ -140,9 +139,19 @@ class Router{
         // Valida a URL
         foreach ($this->routes as $patternRoute => $methods) {
             // verifica se a rota uri com padrão
-            if(preg_match($patternRoute, $uri)){
+
+            if(preg_match($patternRoute, $uri, $matches)){
+
                 // verifica o metodo
-                if($methods[$httpMethod]){
+                if(isset($methods[$httpMethod])){
+                    // Removendo primeira posição do regex completa
+                    unset($matches[0]);
+
+                    // Variáveis processadas
+                    $keys = $methods[$httpMethod]['variables'];
+                    $methods[$httpMethod]['variables'] = array_combine($keys, $matches);
+                    $methods[$httpMethod]['variables']['request'] = $this->request;
+
                     // Retorno dos parametros da rota
                     return $methods[$httpMethod];
                 }
@@ -187,6 +196,14 @@ class Router{
             }
             // Argumentos da função
             $args = [];
+
+            // Reflection 
+            $reflection = new ReflectionFunction($route['controller']);
+            foreach ($reflection->getParameters() as $key => $parameter) {
+                $name = $parameter->getName();
+                $args[$name] = $route['variables'][$name] ?? '';
+            }
+            
             // Retorna a execução da função
             return call_user_func_array($route['controller'], $args);
 

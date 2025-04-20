@@ -4,24 +4,24 @@ namespace App\Controller;
 
 use \App\Utils\View;
 
-class Sobre extends AbstractController{
+class Descricao extends AbstractController{
 
     public static function index(){
         $data = [];
         try {
                         
             $data = [
-                'titulo' => 'Tela Sobre teste',
-                'descricao' => 'Estudantes da PUC Minas - Diogo',
+                'titulo' => 'Tela Descricao teste',
+                'descricao' => 'Aqui fica o card de descrição de noticias - Arthur',
             ];
             
         } catch (\Throwable $th) {
             echo($th->getMessage());
         }
-        $conteudo = View::render('sobre', $data);
+        $conteudo = View::render('descricao', $data);
 
         //parametros(tituloPag, conteudo)
-        return self::getBase('Sobre', $conteudo);
+        return self::getBase('Descricao', $conteudo);
 
     }
 

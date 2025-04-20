@@ -10,6 +10,27 @@ $obRouter->get('/', [
     }
 ]);
 
+//Rota Notícias
+$obRouter->get('/noticias', [
+    function(){
+        return new Response(200, Controller\Noticias::index());
+    }
+]);
+
+//Rota AprendaReciclar
+$obRouter->get('/aprendareciclar', [
+    function(){
+        return new Response(200, Controller\AprendaReciclar::index());
+    }
+]);
+
+//Rota Descrição
+$obRouter->get('/descricao', [
+    function(){
+        return new Response(200, Controller\Descricao::index());
+    }
+]);
+
 //Rota Sobre
 $obRouter->get('/sobre', [
     function(){
