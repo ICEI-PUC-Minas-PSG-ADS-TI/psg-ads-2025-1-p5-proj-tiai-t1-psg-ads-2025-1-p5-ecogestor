@@ -3,10 +3,22 @@
 require __DIR__.'/vendor/autoload.php';
 
 use \App\Http\Router;
-use \App\Controller\Home;
+use \App\Utils\View;
 
-// define('URL', 'http://localhost/eco-gestor');
-// $obRouter = new Router(URL);
+define('URL', 'http://localhost/eco-gestor/src');
+// Define o valor padrão das variaveis
+View::init([
+    'URL' => URL
+]);
 
-// echo '<pre>'; print_r($obRouter);echo '</pre>';exit;
-echo Home::index();
+$obRouter = new Router(URL);
+
+// inclui as rotas de paginas
+include __DIR__.'/routes/pages.php';
+
+// Imprime o response da rota
+$obRouter->run()->sendResponse();
+
+//  echo '<pre>'; print_r($obRouter);echo '</pre>';exit;
+// // echo '<pre>'; print_r($obRouter);echo '</pre>';exit;
+// echo Home::index();

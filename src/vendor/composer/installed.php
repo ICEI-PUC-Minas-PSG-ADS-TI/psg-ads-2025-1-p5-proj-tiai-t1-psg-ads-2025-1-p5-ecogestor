@@ -3,7 +3,7 @@
         'name' => 'ecogestor/app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f7b8f7a8661923478ba4890acfa242f6a927b614',
+        'reference' => 'e6b5b550e2e198672db385c0bcfbddab34ec440d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ecogestor/app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f7b8f7a8661923478ba4890acfa242f6a927b614',
+            'reference' => 'e6b5b550e2e198672db385c0bcfbddab34ec440d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

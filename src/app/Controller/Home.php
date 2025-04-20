@@ -31,7 +31,7 @@ class Home extends AbstractController{
         $conteudo = View::render('home', $data);
 
         //parametros(tituloPag, conteudo)
-        return self::getBase('tela home', $conteudo);
+        return self::getBase('Home', $conteudo);
 
     }
 
