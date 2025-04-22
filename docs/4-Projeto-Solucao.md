@@ -51,11 +51,6 @@ Não será utilizado no projeto um banco de dados, pois o projeto não necessita
 
 ### 4.4. Tecnologias
 
-_Descreva qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas._
-
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
-
-
 | **Dimensão**   | **Tecnologia**  |
 | ---            | ---             |
 | Front end      | HTML+CSS+JS+Bootstrap    |
@@ -63,6 +58,9 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 | Deploy         | Github Pages    |
 | IDE            | Visual Studio Code |
 | APIs           | API de Notícias, API do Gemini |
+
+#### Diagrama de Tecnologias
+![diagrama_tecnologias_ecogestor](https://github.com/user-attachments/assets/1edb5e97-e797-4fb4-b9d1-df55604122b9)
 
 
 
