@@ -24,22 +24,29 @@
 
 ### 4.2. Protótipos de telas
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="02-Especificação do Projeto.md"> Especificação do Projeto</a>.
-A partir das atividades de usuário identificadas na seção anterior, elabore o protótipo de tela de cada uma delas.
-![Exemplo de Wireframe](images/wireframe-example.png)
+#### Home:
 
-São protótipos usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante do layout de elementos fundamentais na interface.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+![image](https://github.com/user-attachments/assets/1b0f3559-12b9-4113-b1d7-f8e7cb27ccff)
 
+#### Noticias:
+
+![image](https://github.com/user-attachments/assets/75281aae-fd08-415b-9b9e-d1e407dee06e)
+
+#### Modal ao clicar em uma noticia:
+
+![image](https://github.com/user-attachments/assets/40c52451-0b9e-4c19-b04f-a3267aaf0fe6)
+
+#### Aprenda a reclicar:
+
+![image](https://github.com/user-attachments/assets/d60356e9-8d3f-41c5-ba04-975c59df28fe)
+
+##### Após pesquisar:
+
+![image](https://github.com/user-attachments/assets/55c94931-4dcb-4983-b0f8-21955a349bf2)
+
+#### Sobre:
+
+![image](https://github.com/user-attachments/assets/2b2cb874-caac-4c89-a7e0-870b6d38f73c)
 
 ## Diagrama de Classes
 
