@@ -18,12 +18,9 @@
   - Manipulação de rotas para definir quais controladores e métodos serão executados em cada requisição.
   - Integração com APIs como a API Gemini para IA e a API News para notícias.
 
-Geração dinâmica de páginas através de templates. 
- 
- **Exemplo do diagrama de Arquitetura**:
- 
- ![Exemplo de Arquitetura](./images/arquitetura-exemplo.png)
- 
+#### Diagrama de Arquitetura:
+
+![diagrama_arquitetura_ecogestor](https://github.com/user-attachments/assets/af963666-270a-4213-a517-0e7568d819ef)
 
 ### 4.2. Protótipos de telas
 
