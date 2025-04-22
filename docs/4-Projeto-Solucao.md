@@ -67,7 +67,9 @@ Não será utilizado no projeto um banco de dados, pois o projeto não necessita
 | APIs           | API de Notícias, API do Gemini |
 
 #### Diagrama de Tecnologias
-![diagrama_tecnologias_ecogestor](https://github.com/user-attachments/assets/1edb5e97-e797-4fb4-b9d1-df55604122b9)
+
+![diagrama_tecnologias_ecogestor_2](https://github.com/user-attachments/assets/281d9953-620f-4967-857b-1e54ea974d95)
+
 
 
 
