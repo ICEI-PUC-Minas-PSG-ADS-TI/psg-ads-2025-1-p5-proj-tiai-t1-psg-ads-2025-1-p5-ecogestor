@@ -1,0 +1,26 @@
+#card-container{
+     display: flex;
+     flex-wrap: wrap;
+     gap: 16px;
+}
+
+.card {
+     display: flex;
+     width: calc(50% - 8px);
+     border: 1px solid #ccc;
+     padding: 16px;
+     border-radius: 8px;
+     box-sizing: border-box;
+     background: #AFD06E;
+   }
+
+.card #div-button{
+     display: flex;
+     justify-content: end;
+     align-items: end;
+}
+.card #div-button a{
+     width: 500px;
+     background-color: rgb(59, 128, 59);
+     border: none;
+}

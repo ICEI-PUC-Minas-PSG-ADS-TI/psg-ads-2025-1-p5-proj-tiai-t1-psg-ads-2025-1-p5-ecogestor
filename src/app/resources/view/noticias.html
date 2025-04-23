@@ -1,9 +1,30 @@
-
+<link rel="stylesheet" href="app/assets/css/noticias.css" />
 <div class="container">
-    <h2>{{titulo}}</h2>
-    <p class="descricao">{{descricao}}</p>
-    <a href="{{URL}}/descricao">Link Tela Descrição Arthur</a>
+  <h2>Teste</h2>
+  <p class="descricao">{{descricao}}</p>
+  <div id="card-container">
+  </div>
+  <a href="{{URL}}/descricao">Link Tela Descrição Arthur</a>
 </div>
 <script>
+  function carregarCards(dados){
+    exemploDados = [1,2,3,4]
+    const cardConatainer = document.getElementById("card-container");
+    const cardHTML = `
+    <div class="card">Card title</h5>
+          <img src="app/assets/images/Reciclagem1.png" alt="Imagem do card"style="width: 100%; border-radius: 8px; margin-bottom: 12px;"
+  />
+        <div id=div-button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa</p>
+            <a href="#" class="btn btn-primary">Ver mais</a>
+        </div>
+        </div>
+    </div>
+    `;
 
+    exemploDados.forEach((item) => {
+    cardConatainer.innerHTML += cardHTML;
+  });
+  }
+  carregarCards();
 </script>
