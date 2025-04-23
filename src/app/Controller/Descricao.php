@@ -6,22 +6,21 @@ use \App\Utils\View;
 
 class Descricao extends AbstractController{
 
-    public static function index(){
+    public static function index($idNoticia){
+
         $data = [];
         try {
                         
             $data = [
                 'titulo' => 'Tela Descricao teste',
-                'descricao' => 'Aqui fica o card de descrição de noticias - Arthur',
+                'descricao' => 'id da noticia '.$idNoticia,
             ];
             
         } catch (\Throwable $th) {
             echo($th->getMessage());
         }
-        $conteudo = View::render('descricao', $data);
-
         //parametros(tituloPag, conteudo)
-        return self::getBase('Descricao', $conteudo);
+        return View::render('descricao', $data);
 
     }
 

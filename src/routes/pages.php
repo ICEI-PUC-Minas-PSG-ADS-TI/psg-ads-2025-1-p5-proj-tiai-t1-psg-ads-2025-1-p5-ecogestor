@@ -25,9 +25,9 @@ $obRouter->get('/aprendareciclar', [
 ]);
 
 //Rota Descrição
-$obRouter->get('/descricao', [
-    function(){
-        return new Response(200, Controller\Descricao::index());
+$obRouter->get('/descricao/{idNoticia}', [
+    function($idNoticia){
+        return new Response(200, Controller\Descricao::index($idNoticia));
     }
 ]);
 
@@ -41,6 +41,6 @@ $obRouter->get('/sobre', [
 //Rota Dinamica
 $obRouter->get('/pagina/{idPagina}', [
     function($idPagina){
-        return new Response(200, 'Pagina'.$idPagina);
+        return new Response(200, 'Pagina '.$idPagina);
     }
 ]);

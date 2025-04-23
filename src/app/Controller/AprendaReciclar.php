@@ -11,8 +11,7 @@ class AprendaReciclar extends AbstractController{
         try {
                         
             $data = [
-                'titulo' => 'Tela Aprenda a Reciclar teste',
-                'descricao' => 'Aqui ficarão os tutoriais - Bernardo',
+                'titulo' => 'Tela Aprenda a Reciclar teste'
             ];
             
         } catch (\Throwable $th) {
