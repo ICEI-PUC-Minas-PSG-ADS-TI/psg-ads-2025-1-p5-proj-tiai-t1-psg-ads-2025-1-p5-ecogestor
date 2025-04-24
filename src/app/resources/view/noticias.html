@@ -7,24 +7,29 @@
   <a href="{{URL}}/descricao">Link Tela Descrição Arthur</a>
 </div>
 <script>
-  function carregarCards(dados){
-    exemploDados = [1,2,3,4]
-    const cardConatainer = document.getElementById("card-container");
-    const cardHTML = `
-    <div class="card">Card title</h5>
-          <img src="app/assets/images/Reciclagem1.png" alt="Imagem do card"style="width: 100%; border-radius: 8px; margin-bottom: 12px;"
-  />
-        <div id=div-button>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa</p>
-            <a href="#" class="btn btn-primary">Ver mais</a>
-        </div>
-        </div>
-    </div>
-    `;
+  const cardConatainer = document.getElementById("card-container");
+  let noticias = [];
 
-    exemploDados.forEach((item) => {
-    cardConatainer.innerHTML += cardHTML;
-  });
+  function carregarCards(noticias){
+    noticias.forEach((item) => {
+      cardHTML = `
+    <div class="card"><h5>${item.titulo}</h5>
+          <img src="app/assets/images/Reciclagem1.png" alt="Imagem do card"style="width: 100%; border-radius: 8px; margin-bottom: 12px;"/> 
+        <div id=div-button>
+            <p>${item.descricao}</p>
+            <a href="descricao/${item.id}" class="btn btn-primary">Ver mais</a>
+        </div>
+        </div>
+    </div>`;
+      cardConatainer.innerHTML += cardHTML;
+    })
   }
-  carregarCards();
+
+  async function reqApiNoticias(){
+  }
+
+  //Requisicao API await
+  await reqApiNoticias();
+
+  carregarCards(noticias);
 </script>
