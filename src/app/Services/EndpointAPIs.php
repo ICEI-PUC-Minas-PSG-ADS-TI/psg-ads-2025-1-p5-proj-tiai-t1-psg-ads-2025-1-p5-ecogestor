@@ -15,12 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $action     = $input['action'];
     $assunto    = $input['assunto'] ?? null;
     $mensagem   = $input['mensagem'] ?? null;
-    $modo       = $input['modo'] ?? 'duvida';
+    $modo       = $input['modo'] ?? 'perguntar';
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $action     = $_GET['action'] ?? null;
     $mensagem   = $_GET['mensagem'] ?? null;
     $assunto    = $_GET['assunto'] ?? null;
-    $modo       = $_GET['modo'] ?? 'duvida';
+    $modo       = $_GET['modo'] ?? 'perguntar';
 }
 
 if (!isset($action)) {
@@ -34,15 +34,19 @@ switch ($action) {
             $gemini = new APIGemini();
 
             switch ($modo) {
-                case 'conteudo':
+                case 'gerar':
                     $mensagem = "Preciso que me retorne um array com um passo a passo para reciclar algo. 
                                 Preciso que me retorne titulo e descrição de cada passo, cada posição do array deve ser um dos passos. 
                                 Faça inspirado no site WikiHow.";
                     break;
-                case 'duvida':
-                default:
+                case 'perguntar':
                     $mensagem = "A pergunta abaixo é de um usuário sobre um assunto específico. 
                                 Responda de forma clara e objetiva, utilizando uma linguagem simples e acessível." . "\n" . $mensagem;
+                    break;
+                case 'resumir':
+                    $mensagem = "Resuma o conteúdo abaixo:" . "\n" . $mensagem;
+                    break;
+                default:
                     break;
             }
 
