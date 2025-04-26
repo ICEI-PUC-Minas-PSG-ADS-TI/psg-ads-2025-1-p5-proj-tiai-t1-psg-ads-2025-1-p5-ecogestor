@@ -5,7 +5,7 @@ require __DIR__.'/vendor/autoload.php';
 use \App\Http\Router;
 use \App\Utils\View;
 
-define('URL', 'http://localhost/src');
+define('URL', 'http://localhost/eco-gestor/src');
 // Define o valor padrão das variaveis
 View::init([
     'URL' => URL
