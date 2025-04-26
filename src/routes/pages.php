@@ -25,9 +25,9 @@ $obRouter->get('/aprendareciclar', [
 ]);
 
 //Rota Descrição
-$obRouter->get('/descricao/{idNoticia}', [
-    function($idNoticia){
-        return new Response(200, Controller\Descricao::index($idNoticia));
+$obRouter->get('/descricao{}', [
+    function(){
+        return new Response(200, Controller\Descricao::index());
     }
 ]);
 

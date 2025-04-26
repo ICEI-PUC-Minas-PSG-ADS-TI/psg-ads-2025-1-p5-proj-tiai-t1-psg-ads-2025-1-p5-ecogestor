@@ -6,14 +6,14 @@ use \App\Utils\View;
 
 class Descricao extends AbstractController{
 
-    public static function index($idNoticia){
+    public static function index(){
 
         $data = [];
         try {
                         
             $data = [
                 'titulo' => 'Tela Descricao teste',
-                'descricao' => 'id da noticia '.$idNoticia,
+                'descricao' => 'Descrição detalhada da noticia',
             ];
             
         } catch (\Throwable $th) {
