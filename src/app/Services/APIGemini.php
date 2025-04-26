@@ -19,7 +19,7 @@ class APIGemini
     function __construct()
     {
         // Define a chave da API e a URL
-        $this->api_key = $_ENV['NEWS_API_KEY'];
+        $this->api_key = $_ENV['GEMINI_API_KEY'];
         $this->url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" . $this->api_key;
 
         // Cria o cliente Guzzle
@@ -52,9 +52,7 @@ class APIGemini
 
         // Pega o texto de retorno da IA
         $text = $response['candidates'][0]['content']['parts'][0]['text'];
-
-        echo "\033[32m$text\033[0m";
-        return $text;
+        return ['Resposta' => $text];
     }
 }
 ?>

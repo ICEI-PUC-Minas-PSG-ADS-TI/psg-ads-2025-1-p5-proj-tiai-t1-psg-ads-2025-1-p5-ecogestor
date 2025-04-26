@@ -21,6 +21,9 @@ class ComposerStaticInit3b245d2ca48ef24631a038d3ed0b3911
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Component\\Process\\' => 26,
+            'Spatie\\TemporaryDirectory\\' => 26,
+            'Spatie\\Browsershot\\' => 19,
         ),
         'P' => 
         array (
@@ -57,6 +60,18 @@ class ComposerStaticInit3b245d2ca48ef24631a038d3ed0b3911
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Spatie\\TemporaryDirectory\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/temporary-directory/src',
+        ),
+        'Spatie\\Browsershot\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/browsershot/src',
         ),
         'Psr\\Http\\Message\\' => 
         array (
