@@ -2,8 +2,155 @@
 <div class="container">
     <h2>{{titulo}}</h2>
     <p class="descricao">{{descricao}}</p>
+    <div id="card-container">
+    </div>
 </div>
 <script>
-// pegar id pela url
-// fazer o get da api para o item do id especifico
+    const cardConatainer = document.getElementById("card-container");
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title");
+
+    async function buscarNoticiaPorTitulo(title) {
+        const post = {
+            action: "news",
+            titulo: title 
+        };
+
+        const response = await fetch('/src/app/Services/EndPointAPIs.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+        });
+
+        const data = await response.json();
+
+        return data.noticias?.[0]; 
+    }
+
+    function exibirNoticia(noticia) {
+        if (!noticia) {
+            cardConatainer.innerHTML = "<h1>Notícia não encontrada! Código 404</h1>";
+            return;
+        }
+
+        const noticiaHTML = `
+        <div class="container my-5">
+            <div class="card">
+                <img 
+                src="${noticia.urlToImage}" 
+                alt="Imagem da notícia" 
+                class="img-top"
+                >
+                <h1 class="card-title text-center">${noticia.title}</h1>
+                <h5 class="card-subtitle text-center">${noticia.description}</h5>
+
+                <ul class="info-list text-center">
+                <li><strong>Fonte:</strong> ${noticia.source?.name || 'Desconhecida'}</li>
+                <li><strong>Autor:</strong> ${noticia.author || 'Não informado'}</li>
+                <li><strong>Publicado em:</strong> ${new Date(noticia.publishedAt).toLocaleString()}</li>
+                </ul>
+
+                <p class="card-text"><strong>Descrição:</strong><br>${noticia.description}</p>
+
+                <div class="text-center mt-4">
+                <a href="${noticia.url}" target="_blank" class="btn-read">
+                    Ler matéria completa
+                </a>
+                </div>
+            </div>
+        </div>
+        `;
+        cardConatainer.innerHTML = noticiaHTML;
+    }
+
+    (async () => {
+        if (title) {
+            console.log("Buscando notícia com o título:", title);
+            const noticia = await buscarNoticiaPorTitulo(title);
+            exibirNoticia(noticia);
+        } else {
+            cardConatainer.innerHTML = "<p>Nenhuma notícia selecionada.</p>";
+        }
+    })();
 </script>
+
+<style>
+    body {
+        background-color: #E6F0E9; 
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .card {
+        max-width: 800px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 30px;
+    }
+
+    .card-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #2E7D32;
+        margin-bottom: 20px;
+    }
+
+    .card-subtitle {
+        font-size: 18px;
+        font-weight: 400;
+        color: #555;
+        margin-bottom: 25px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .info-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 25px;
+    }
+
+    .info-list li {
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .btn-read {
+        background-color: #2E7D32;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-read:hover {
+        background-color: #1B5E20;
+    }
+
+    .img-top {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        object-fit: cover;
+        max-height: 350px;
+    }
+</style>
