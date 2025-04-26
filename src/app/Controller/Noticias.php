@@ -12,7 +12,7 @@ class Noticias extends AbstractController{
                         
             $data = [
                 'titulo' => 'Tela Noticias teste',
-                'descricao' => 'Aqui ficam as notícias - DanDan',
+                'descricao' => 'Noticias sobre Reciclagem',
             ];
             
         } catch (\Throwable $th) {

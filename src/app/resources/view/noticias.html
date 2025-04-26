@@ -4,32 +4,148 @@
   <p class="descricao">{{descricao}}</p>
   <div id="card-container">
   </div>
-  <a href="{{URL}}/descricao">Link Tela Descrição Arthur</a>
+  <!-- <a href="{{URL}}/descricao">Link Tela Descrição Arthur</a> -->
 </div>
 <script>
   const cardConatainer = document.getElementById("card-container");
   let noticias = [];
+  let quantidade = 12;
 
-  function carregarCards(noticias){
+  function carregarCards(noticias, quantidade){
+    console.log("Carregando cards...");
+    noticias.splice(quantidade);
     noticias.forEach((item) => {
       cardHTML = `
-    <div class="card"><h5>${item.titulo}</h5>
-          <img src="app/assets/images/Reciclagem1.png" alt="Imagem do card"style="width: 100%; border-radius: 8px; margin-bottom: 12px;"/> 
-        <div id=div-button>
-            <p>${item.descricao}</p>
-            <a href="descricao/${item.id}" class="btn btn-primary">Ver mais</a>
-        </div>
-        </div>
-    </div>`;
+                <div class="card">
+                  <img src="${item.urlToImage}" alt="Imagem do card" class="img-top"/>
+                  <h3 class="card-title">${item.title}</h3>
+                  <p class="card-text">${item.description}</p>
+
+                  <div class="text-center">
+                    <a href="descricao?title=${item.title}" class="btn-read">Ver mais</a>
+                  </div>
+                </div>`;
       cardConatainer.innerHTML += cardHTML;
     })
   }
 
-  async function reqApiNoticias(){
+  async function reqApiNoticias() {
+    console.log("Requisitando API de Notícias...");
+
+    const post = {
+      action: "news",
+      assunto: "reciclagem"
+    };
+
+    const response = await fetch('/src/app/Services/EndPointAPIs.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    });
+
+    const data = await response.json();
+    return data.noticias;
   }
 
-  //Requisicao API await
-  await reqApiNoticias();
-
-  carregarCards(noticias);
+  (async () => {
+    console.log("Iniciando a aplicação...");
+    noticias = await reqApiNoticias();
+    carregarCards(noticias, quantidade);
+  })();
 </script>
+
+<style>
+  body {
+    background-color: #E6F0E9;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .card {
+    max-width: 300px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2E7D32;
+    margin-bottom: 10px;
+  }
+
+  .card-subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .info-list li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .btn-read {
+    background-color: #2E7D32;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-read:hover {
+    background-color: #1B5E20;
+  }
+
+  .img-top {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    object-fit: cover;
+  }
+</style>
