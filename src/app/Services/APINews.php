@@ -7,7 +7,7 @@ use GuzzleHttp\Client as Client;
 use Dotenv\Dotenv;
 
 // Manipular o .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();
 
 class APINews
