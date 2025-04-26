@@ -14,12 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $action     = $input['action'];
     $assunto    = $input['assunto'] ?? null;
+    $titulo     = $input['titulo'] ?? null;
     $mensagem   = $input['mensagem'] ?? null;
     $modo       = $input['modo'] ?? 'perguntar';
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET'){
     $action     = $_GET['action'] ?? null;
     $mensagem   = $_GET['mensagem'] ?? null;
     $assunto    = $_GET['assunto'] ?? null;
+    $titulo     = $_GET['titulo'] ?? null;
     $modo       = $_GET['modo'] ?? 'perguntar';
 }
 
@@ -57,10 +59,14 @@ switch ($action) {
         }
         break;
     case 'news':
-        if (isset($assunto)) {
+        if (isset($assunto) && empty($titulo)) {
             $news = new APINews();
-            $noticias = $news->Get($assunto);
-            echo json_encode(['Noticias' => $noticias]);
+            $noticias = $news->GetAll($assunto);
+            echo json_encode($noticias);
+        } else if (isset($titulo)) {
+            $news = new APINews();
+            $noticias = $news->Get($titulo);
+            echo json_encode($noticias);
         } else {
             echo json_encode(['erro' => 'Assunto não fornecido']);
         }

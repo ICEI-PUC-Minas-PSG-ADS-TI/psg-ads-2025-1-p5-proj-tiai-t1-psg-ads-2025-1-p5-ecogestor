@@ -29,10 +29,28 @@ class APINews
         ]);
     }
 
-    function Get($assunto){
-        // Realiza a requisição para a API do NewsAPI
+    function GetAll($assunto){
+        // Realiza a requisição para a API do NewsAPI para coletar por assunto
         try {
             $url = $this->url . "&q=" . $assunto;
+            $response = $this->client->get($url);
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+        $response = $response->getBody()->getContents();
+        $response = json_decode($response, true);
+
+        return [
+            'status' => $response['status'],
+            'totalResults' => $response['totalResults'],
+            'noticias' => $response['articles']
+        ];
+    }
+
+    function Get($titulo){
+        // Realiza a requisição para a API do NewsAPI para coletar por título
+        try {
+            $url = $this->url . "&qInTitle=" . $titulo;
             $response = $this->client->get($url);
         } catch (\Throwable $th) {
             echo $th->getMessage();
