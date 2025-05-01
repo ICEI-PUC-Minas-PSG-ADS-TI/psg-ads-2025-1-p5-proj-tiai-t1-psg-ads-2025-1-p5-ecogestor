@@ -2,10 +2,13 @@
 #Para executar este script, use o Terminal do Git Bash e chame com o comando: ./rodar.sh
 echo "Iniciando o servidor PHP..."
 
-# Caminho absoluto no estilo Git Bash/WSL
-TARGET_DIR="/c/Users/Pichau/Documents/Projetos/PUC"
+# Caminho absoluto do diretório onde está este script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Ir para o diretório correto
+# Caminho dois níveis acima (até a pasta PUC)
+TARGET_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+# Ir para o diretório PUC
 cd "$TARGET_DIR" || {
   echo "Falha ao acessar o diretório: $TARGET_DIR"
   exit 1
@@ -18,5 +21,5 @@ php -S localhost:3000 &
 # Esperar 2 segundos para garantir que o servidor iniciou
 sleep 2
 
-# Usar start no Windows para abrir o navegador automaticamente
+# Abrir o navegador apontando para a URL inicial
 start "" "http://localhost:3000/eco-gestor/src/"
