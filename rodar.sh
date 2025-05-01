@@ -19,4 +19,4 @@ php -S localhost:3000 &
 sleep 2
 
 # Usar start no Windows para abrir o navegador automaticamente
-start "" "http://localhost:3000/eco-gestor/src/home"
+start "" "http://localhost:3000/eco-gestor/src/"

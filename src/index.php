@@ -5,7 +5,13 @@ require __DIR__.'/vendor/autoload.php';
 use \App\Http\Router;
 use \App\Utils\View;
 
-define('URL', 'http://localhost/eco-gestor/src');
+// Verifica se $_SERVER['HTTP_HOST'] está definido
+if (!empty($_SERVER['HTTP_HOST'])) {
+    define('URL', 'http://' . $_SERVER['HTTP_HOST'] . '/eco-gestor/src');
+} else {
+    define('URL', 'http://localhost/eco-gestor/src');
+}
+
 // Define o valor padrão das variaveis
 View::init([
     'URL' => URL
