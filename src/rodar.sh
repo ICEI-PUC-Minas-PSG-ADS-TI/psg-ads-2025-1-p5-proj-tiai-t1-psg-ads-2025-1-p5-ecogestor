@@ -1,5 +1,5 @@
 #!/bin/bash
-#Para executar este script, use o Terminal do Git Bash e chame com o comando: ./rodar.sh
+#Para executar este script, use o Terminal do Git Bash e chame com o comando: ./src/rodar.sh
 echo "Iniciando o servidor PHP..."
 
 # Caminho absoluto do diretório onde está este script
