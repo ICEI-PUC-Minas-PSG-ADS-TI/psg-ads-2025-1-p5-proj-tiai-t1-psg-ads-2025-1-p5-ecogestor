@@ -12,7 +12,6 @@ class AprendaReciclar extends AbstractController{
         try {
             $api = new APIGemini();
 
-
             $data = [
                 'titulo' => 'Aprenda a Reciclar'
             ];
