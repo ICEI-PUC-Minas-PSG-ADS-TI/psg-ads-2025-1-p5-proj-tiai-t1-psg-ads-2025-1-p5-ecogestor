@@ -14,16 +14,17 @@ class Home extends AbstractController{
             $api = new APINews();
             
             $noticia = $api->Get('Compostagem')['noticias'][0];
-            
-            
-            $data = [
-                'titulo' => $noticia['title'],
-                'imagem' => $noticia['urlToImage'],
-                'url'    => $noticia['url'],
-                'autor'  => $noticia['source']['name'],
-                'descricao' => $noticia['description'],
-                'data'      => date('d/m/Y', strtotime($noticia['publishedAt']))
-            ];
+            if($noticia){
+
+                $data = [
+                    'titulo' => $noticia['title'],
+                    'imagem' => $noticia['urlToImage'],
+                    'url'    => $noticia['url'],
+                    'autor'  => $noticia['source']['name'],
+                    'descricao' => $noticia['description'],
+                    'data'      => date('d/m/Y', strtotime($noticia['publishedAt']))
+                ];
+            }            
             
         } catch (\Throwable $th) {
             echo($th->getMessage());

@@ -1,8 +1,25 @@
 
 <div class="container">
-    <h2>{{titulo}}</h2>
+    <h2 >{{titulo}}</h2>
     <p class="descricao">{{descricao}}</p>
 </div>
 <script>
+const aprendareciclar = (function(){
 
+    var init = () => {
+        console.log("Funcionou");
+    }
+
+    var bindEvents = () => {
+        init();
+    }
+
+    return {
+        bindEvents: bindEvents
+    }
+})()
+
+$(document).ready(function() {
+    aprendareciclar.bindEvents();
+})
 </script>
