@@ -10,7 +10,6 @@ class AprendaReciclar extends AbstractController{
     public static function index(){
         $data = [];
         try {
-            $api = new APIGemini();
 
             $data = [
                 'titulo' => 'Aprenda a Reciclar'
@@ -21,20 +20,19 @@ class AprendaReciclar extends AbstractController{
         }
         $conteudo = View::render('aprendareciclar', $data);
 
-        //parametros(tituloPag, conteudo)
         return self::getBase('Aprenda a Reciclar', $conteudo);
 
     }
 
-    public static function comoReciclar($nomeObjeto){
+    public static function comoReciclar(){
 
         $promptValidacao = "Responda apenas com true ou false. 
-            O seguinte objeto é reciclável: ".$nomeObjeto."
+            O seguinte objeto é reciclável: ".$_POST['nomeObjeto']."
 
             Não escreva mais nada além de true ou false.";
 
 
-        $prompt = "Explique de forma simples como reciclar o objeto: ".$nomeObjeto.". 
+        $prompt = "Explique de forma simples como reciclar o objeto: ".$_POST['nomeObjeto'].". 
             Quero um passo a passo claro e didático.
             
             A resposta deve ser **somente** um JSON no seguinte formato:
@@ -54,7 +52,7 @@ class AprendaReciclar extends AbstractController{
             // Adicione mais passos conforme necessário
             }
             
-            Não inclua nenhum texto fora do JSON.";
+            Não inclua nenhum texto fora do JSON";
 
 
         try {
@@ -67,10 +65,10 @@ class AprendaReciclar extends AbstractController{
                 return "não é possível reciclar";
             }
 
-            $resposta = $api->Ask($prompt);
-
-            // echo '<pre>'; print_r($resposta);echo '</pre>';exit;
-            return $resposta['Resposta'];
+            $respostaBruta = $api->Ask($prompt);
+            $respostaLimpa = str_replace(["```json", "```"], "", $respostaBruta['Resposta']);
+                        
+            return $respostaLimpa;
         } catch (\Throwable $th) {
             echo($th->getMessage());
         }

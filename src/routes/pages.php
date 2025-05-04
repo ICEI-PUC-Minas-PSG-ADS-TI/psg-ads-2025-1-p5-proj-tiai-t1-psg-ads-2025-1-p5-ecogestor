@@ -24,6 +24,13 @@ $obRouter->get('/aprendareciclar', [
     }
 ]);
 
+//Rota Dinamica POST
+$obRouter->post('/aprendareciclar/comoreciclar', [ 
+    function(){
+        return new Response(200, Controller\AprendaReciclar::comoReciclar());
+    }
+]);
+
 //Rota Descrição
 $obRouter->get('/descricao{}', [
     function(){
@@ -44,3 +51,4 @@ $obRouter->get('/pagina/{idPagina}', [
         return new Response(200, 'Pagina '.$idPagina);
     }
 ]);
+

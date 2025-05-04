@@ -1,25 +1,27 @@
-
-<div class="container">
-    <h2 >{{titulo}}</h2>
-    <p class="descricao">{{descricao}}</p>
+<link rel="stylesheet" href="app/assets/css/aprendareciclar.css">
+<div class="container-fluid">
+    <div class="row mt-5    ">
+        <h2 class="col-12 text-center card-title">{{titulo}}</h2>
+    </div>
+    <div class="row justify-content-center mb-5">
+        <div class="col-10 card p-3">
+            <label for="inputPesquisa" class="form-label">O que gostaria de aprender a reciclar hoje?</label>
+            <div class="input-group mb-3">
+                <input id="inputPesquisa" type="text" class="form-control" placeholder="Ex: latinha de alumínio" aria-label="Ex: latinha de alumínio">
+                <button class="btn btn-outline-success" type="button" id="pesquisar">Pesquisar</button>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-5">
+        <div id="divResposta" class="row justify-content-center">
+        
+        </div>    
+    </div>
 </div>
-<script>
-const aprendareciclar = (function(){
 
-    var init = () => {
-        console.log("Funcionou");
-    }
 
-    var bindEvents = () => {
-        init();
-    }
+<!-- Modal -->
+<div id="listaModal"></div>
 
-    return {
-        bindEvents: bindEvents
-    }
-})()
 
-$(document).ready(function() {
-    aprendareciclar.bindEvents();
-})
-</script>
+<script src="app/assets/js/aprendareciclar.js"></script>

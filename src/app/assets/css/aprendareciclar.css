@@ -1,0 +1,44 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.card-tutorial {
+    max-width: 300px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card-title {
+
+    font-weight: 700;
+    color: #2E7D32;
+    margin-bottom: 10px;
+}
+.card-tutorial:hover {
+    transform: scale(1.05);
+}
+
+.btn-read {
+    background-color: #2E7D32;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-read:hover {
+    background-color: #1B5E20;
+}
