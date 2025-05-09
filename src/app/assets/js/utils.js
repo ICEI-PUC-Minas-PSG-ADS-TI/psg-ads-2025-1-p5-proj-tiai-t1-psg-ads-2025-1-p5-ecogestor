@@ -4,6 +4,7 @@
  */
 const Utils = (function(){
 
+
     var init = () => {
     }
 
@@ -36,6 +37,35 @@ const Utils = (function(){
         return modal;
     }
 
+    // Cria um loading na div passada pela tag
+    // ATENÇÃO: no parametro larguraAuturaEmPX passe um valor de no mínimo 30 e no máximo 1000 para evitar deformações
+    var mostrarLoading = (tag, larguraAuturaEmPX = 120, tempoAnimacao = 6.2) => {
+        
+        let loading = 
+        `<div class="container">
+            <div class="row justify-content-center">
+                <div class="loader col-12" id="loader" style="
+                            border: ${larguraAuturaEmPX / 7.5}px solid #efeee8;
+                            border-top: ${larguraAuturaEmPX / 7.5}px solid #74c22b;
+                            border-radius: 50%;
+                            width: ${larguraAuturaEmPX}px;
+                            height: ${larguraAuturaEmPX}px;
+                            animation: spin ${tempoAnimacao}s linear infinite;
+                            ">
+                </div>
+            </div>
+        </div>`;
+
+        $(tag).html(loading);
+
+    }
+
+    // Remove o loading criado na função mostrarLoading
+    var removerLoading = () => {
+
+        $("#loader").remove();
+    }
+
     // Aqui ficam as funções carregadas ao carregar a tela
     var bindEvents = () => {
         init();
@@ -44,7 +74,9 @@ const Utils = (function(){
     // Aqui ficam as funções que são chamadas externamente em outros arquivos js
     return {
         bindEvents: bindEvents,
-        modal: modal
+        modal: modal,
+        mostrarLoading: mostrarLoading,
+        removerLoading: removerLoading
     }
 })()
 

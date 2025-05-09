@@ -15,8 +15,8 @@ const aprendaReciclar = (function(){
     }
 
     var buscaResposta = () => {
-        $('#pesquisar').on('click', function(){
-
+        $('#formPesquisa').on('submit', function(e){
+            e.preventDefault();
             let objeto = $('#inputPesquisa').val();
             if(objeto == ''){
                 modalValidacao.show();
@@ -28,15 +28,23 @@ const aprendaReciclar = (function(){
                 type: 'POST',
                 data: {
                     nomeObjeto: objeto
+                },beforeSend: function(){
+                    Utils.mostrarLoading('#divResposta');
+                    $('#divResposta')[0].scrollIntoView({ behavior: 'smooth' });
                 },
                 success: function(data) {
                     let json = JSON.parse(data);
                     let cards = montaCards(json);
+                    Utils.removerLoading('#divResposta');
 
                   $('#divResposta').html(cards);
                   $('#divResposta')[0].scrollIntoView({ behavior: 'smooth' });
                 },
                 error: function(xhr, status, erro) {
+                    $('#divResposta').html(`<div class="text-center col-10 mb-2">
+                                                Houve um erro ao processar sua requisição, tente novamente mais tarde!
+                                            </div>`);
+                    $('#divResposta')[0].scrollIntoView({ behavior: 'smooth' });
                   console.error('Erro na requisição:', erro);
                 }
               });
