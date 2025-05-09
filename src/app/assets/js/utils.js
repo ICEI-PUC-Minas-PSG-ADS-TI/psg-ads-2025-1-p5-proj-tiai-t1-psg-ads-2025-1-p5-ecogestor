@@ -6,6 +6,10 @@ const Utils = (function(){
 
 
     var init = () => {
+        // Carrega tolltips, que são uma melhor alternativa ao atributo tittle que demora a carregar, mostram um balão mais fluido
+        // exemplo de como usar: adicione `data-bs-toggle="tooltip" data-bs-title=""` a sua tag e coloque o titulo
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))    
     }
 
     var modal = (idModal, conteudo, tituloModal = "Mensagem do Sistema", nomeBotaoFechar = "Fechar", possuiBotaoAcao = false, nomeBotaoAcao = "Salvar") => {
