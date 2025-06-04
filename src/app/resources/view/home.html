@@ -1,13 +1,60 @@
 
-<h1>Home</h1>
+<link rel="stylesheet" href="app/assets/css/home.css" />
 <div class="container">
-    <h2>{{titulo}}</h2>
-    <img src="{{imagem}}" alt="Imagem da notícia">
-    <p class="descricao">{{descricao}}</p>
-    <p class="autor">Fonte: {{autor}}</p>
-    <p class="data">Publicado em: {{data}}</p>
-    <a href="{{url}}" class="btn btn-success" target="_blank">Leia mais</a>
+    <div>
+        <h1 id="titulo">Home</h1>
+    </div>
+    <div class="container2">
+        <div style="width: 50%;">
+            <h4 class="h1-text">{{texto}}</h4>
+        </div>
+        <div id=card-container></div>
+        
+    </div>
 </div>
-<script>
 
+<script>
+    const cardConatainer = document.getElementById("card-container");
+    let noticias = [];
+    let quantidade = 1;
+
+function carregarCards(noticias, quantidade){
+    noticias.splice(quantidade);
+    noticias.forEach((item) => {
+      cardHTML = `
+                <div class="card">
+                  <img src="${item.urlToImage}" alt="Imagem do card" class="img-top"/>
+                  <h3 class="card-title">${item.title}</h3>
+                  <p class="card-text">${item.description}</p>
+
+                  <div class="text-center">
+                    <a href="descricao?title=${item.title}" class="btn-read">Ver mais</a>
+                  </div>
+                </div>`;
+      cardConatainer.innerHTML += cardHTML;
+    })
+  }
+
+  async function reqApiNoticias() {
+    const post = {
+      action: "news",
+      assunto: "reciclagem"
+    };
+
+    const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    });
+
+    const data = await response.json();
+    return data.noticias;
+  }
+
+  (async () => {
+    noticias = await reqApiNoticias();
+    carregarCards(noticias, quantidade);
+  })();
 </script>
