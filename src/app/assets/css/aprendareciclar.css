@@ -1,44 +1,115 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background-color: #111;
+  color: #e0e0e0;
 }
 
-.card-tutorial {
-    max-width: 300px;
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-bottom: 20px;
-    padding: 15px;
-    transition: transform 0.3s ease;
+h2.card-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #00e676;
+  margin-bottom: 2rem;
 }
 
-.card-title {
-
-    font-weight: 700;
-    color: #2E7D32;
-    margin-bottom: 10px;
+.card {
+  background-color: #1c1c1c;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  color: #ddd;
+  transition: transform 0.3s ease;
 }
-.card-tutorial:hover {
-    transform: scale(1.05);
+
+.card:hover {
+  transform: scale(1.015);
+}
+
+.card label,
+.card .form-label {
+  color: #ccc;
+  font-weight: 500;
+}
+
+.input-group .form-control {
+  background-color: #1f1f1f;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 8px 0 0 8px;
+}
+
+.input-group .form-control::placeholder {
+  color: #888;
+}
+
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+}
+
+.btn-outline-success {
+  border-color: #00e676;
+  color: #00e676;
+}
+
+.btn-outline-success:hover {
+  background-color: #00e676;
+  color: #000;
+}
+
+.card-body .card-title {
+  color: #00e676;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 .btn-read {
-    background-color: #2E7D32;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+  background-color: #00e676;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 10px;
+  transition: all 0.3s ease;
 }
 
 .btn-read:hover {
-    background-color: #1B5E20;
+  background-color: #00c853;
+  color: #fff;
+}
+
+#divResposta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1rem 0;
+}
+
+#divResposta .card {
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #eee;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#divResposta .card:hover {
+  transform: scale(1.01);
+}
+
+#divResposta .card-title {
+  color: #00e676;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
 }

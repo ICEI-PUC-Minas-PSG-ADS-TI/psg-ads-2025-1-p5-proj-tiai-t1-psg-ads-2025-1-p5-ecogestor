@@ -1,38 +1,96 @@
-
 <link rel="stylesheet" href="app/assets/css/home.css" />
-<div class="container">
-    <div>
-        <h1 id="titulo">Home</h1>
-    </div>
+
+<!-- 1. Abertura institucional -->
+<section class="main-content">
+  <div class="container-fluid main-container">
     <div class="container2">
-        <div style="width: 50%;">
-            <h4 class="h1-text">{{texto}}</h4>
-        </div>
-        <div id=card-container></div>
-        
+      <div>
+        <h2 class="intercalado-titulo">Juntos por um futuro mais sustentável</h2>
+        <h4 class="h1-text">
+          {{texto}}
+        </h4>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
+<!-- 2. Notícias -->
+<section class="bloco-intercalado noticias-bloco">
+  <div class="intercalado-container">
+    <div class="intercalado-texto">
+      <h2 class="intercalado-titulo">Fique por dentro</h2>
+      <p class="intercalado-descricao">
+        Acompanhe as principais notícias e novidades sobre meio ambiente, sustentabilidade e práticas ecológicas. 
+        O EcoGestor traz para você conteúdos atualizados e confiáveis de fontes renomadas.
+      </p>
+      <a href="{{URL}}/noticias" class="btn-secao">Ver todas as notícias</a>
+    </div>
+    <div class="noticia-card">
+      <div id="noticias-loading" class="noticia-loading">
+        <div class="spinner"></div>
+      </div>
+      <div id="noticias-container" style="display: none;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Aprenda a reciclar -->
+<section class="bloco-intercalado">
+  <div class="intercalado-container">
+    <div class="intercalado-texto">
+      <h2 class="intercalado-titulo">Aprenda a reciclar</h2>
+      <p class="intercalado-descricao">
+        Você sabia que boa parte dos resíduos pode ganhar uma nova vida? Aqui no EcoGestor,
+        você aprende como separar corretamente os materiais, entende os símbolos de reciclagem e descobre como aplicar
+        soluções sustentáveis na sua rotina. Pequenas atitudes que fazem grande diferença.
+      </p>
+      <a href="{{URL}}/aprendareciclar" class="btn-secao">Ir para Aprenda</a>
+    </div>
+    <div class="intercalado-imagem">
+      <img src="app/assets/images/aprenda_reciclar.png" alt="Aprenda a reciclar">
+    </div>
+  </div>
+</section>
+
+<!-- 4. Sobre o EcoGestor -->
+<section class="bloco-intercalado">
+  <div class="intercalado-container intercalado-reverso">
+    <div class="intercalado-imagem">
+      <img src="app/assets/images/sobre.png" alt="Sobre o EcoGestor">
+    </div>
+    <div class="intercalado-texto">
+      <h2 class="intercalado-titulo">Sobre o EcoGestor</h2>
+      <p class="intercalado-descricao">
+        Fundado com o propósito de conectar pessoas e meio ambiente, o EcoGestor nasceu da necessidade de disseminar conhecimento e facilitar o acesso à informação ambiental de qualidade.
+        Nosso conteúdo é criado por pessoas que acreditam que a mudança começa com a conscientização — e que qualquer um pode contribuir para um planeta melhor.
+      </p>
+      <a href="{{URL}}/sobre" class="btn-secao">Saiba mais sobre nós</a>
+    </div>
+  </div>
+</section>
+
+<!-- Script do card de notícias -->
 <script>
-    const cardConatainer = document.getElementById("card-container");
-    let noticias = [];
-    let quantidade = 1;
+  const cardContainer = document.getElementById("noticias-container");
+  const loadingNoticias = document.getElementById("noticias-loading");
+  let noticias = [];
+  let quantidade = 1;
 
-function carregarCards(noticias, quantidade){
+  function carregarCards(noticias, quantidade) {
+    cardContainer.innerHTML = ''; 
     noticias.splice(quantidade);
     noticias.forEach((item) => {
-      cardHTML = `
-                <div class="card">
-                  <img src="${item.urlToImage}" alt="Imagem do card" class="img-top"/>
-                  <h3 class="card-title">${item.title}</h3>
-                  <p class="card-text">${item.description}</p>
-
-                  <div class="text-center">
-                    <a href="descricao?title=${item.title}" class="btn-read">Ver mais</a>
-                  </div>
-                </div>`;
-      cardConatainer.innerHTML += cardHTML;
-    })
+      const cardHTML = `
+        <div class="card">
+          <img src="${item.urlToImage}" alt="Imagem do card" class="img-top" />
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-text">${item.description}</p>
+          <div class="text-center">
+            <a href="descricao?title=${encodeURIComponent(item.title)}" class="btn-read">Ver mais</a>
+          </div>
+        </div>`;
+      cardContainer.innerHTML += cardHTML;
+    });
   }
 
   async function reqApiNoticias() {
@@ -43,9 +101,7 @@ function carregarCards(noticias, quantidade){
 
     const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(post)
     });
 
@@ -54,7 +110,16 @@ function carregarCards(noticias, quantidade){
   }
 
   (async () => {
+    // Oculta o container e mostra o loading
+    cardContainer.style.display = "none";
+    loadingNoticias.style.display = "flex";
+
+    // Carrega dados
     noticias = await reqApiNoticias();
     carregarCards(noticias, quantidade);
+
+    // Mostra os cards e esconde o loading
+    loadingNoticias.style.display = "none";
+    cardContainer.style.display = "block";
   })();
 </script>

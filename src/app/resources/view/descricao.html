@@ -1,28 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoGestor</title>
 
-<div class="page-container">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app/assets/css/style.css">
+  <link rel="stylesheet" href="app/assets/css/descricao.css">
+  <link rel="icon" type="image/x-icon" href="app/assets/images/favicon.ico">
+
+  <style>
+    .spinner-noticia {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+    }
+
+    .spinner-noticia::after {
+      content: "";
+      width: 50px;
+      height: 50px;
+      border: 6px solid #00e676;
+      border-top: 6px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); opacity: 1; }
+      50% { transform: rotate(180deg); opacity: 1; }
+      100% { transform: rotate(360deg); opacity: 0.7; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-container">
+    <a href="noticias" class="btn-voltar">← Voltar para notícias</a>
+
     <div class="main-content-wrapper">
-        <div id="news-article-container" class="news-container">
-            <div class="placeholder-content text-center p-5">Loading news...</div>
-        </div>
+      <div id="news-article-container" class="news-container">
+        <div id="noticia-loading" class="spinner-noticia"></div>
+      </div>
 
-        <div id="website-preview-container" class="website-preview-container" style="display: none;">
-             <h3>Noticia</h3>
-             <div class="website-screenshot-wrapper" id="screenshot-wrapper">
-                 <p class="screenshot-message">Carregando preview...</p>
-             </div>
+      <div id="website-preview-container" class="website-preview-container" style="display: none;">
+        <h3>Preview da Notícia</h3>
+        <div class="website-screenshot-wrapper" id="screenshot-wrapper">
+          <p class="screenshot-message">Carregando preview...</p>
         </div>
+      </div>
     </div>
 
     <div id="qa-section" class="qa-container" style="display: none;">
-        <h3>Pergunte sobre a noticia</h3>
-        <textarea id="question-input" placeholder="Escreva sua dúvida sobre a noticia aqui.."></textarea>
-        <button id="send-question-btn">Mande sua dúvida</button>
-        <div id="answer-display">
-        </div>
+      <h3>Pergunte sobre a notícia</h3>
+      <textarea id="question-input" placeholder="Escreva sua dúvida sobre a notícia..."></textarea>
+      <button id="send-question-btn">Mande sua dúvida</button>
+      <div id="answer-display"></div>
     </div>
-</div>
+  </div>
 
-<script>
+  <script>
     const newsContainer     = document.getElementById("news-article-container");
     const previewContainer  = document.getElementById("website-preview-container");
     const screenshotWrapper = document.getElementById("screenshot-wrapper");
@@ -34,379 +74,140 @@
     const title             = params.get("title");
     let currentNoticiaUrl   = null;
 
-    async function buscarNoticiaPorTitulo(title) {
-        const post = {
-            action: "news",
-            titulo: title
-        };
-        try {
-            const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(post)
-            });
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const data = await response.json();
-            console.log("API Response Data (News):", data);
-            return data.noticias?.[0];
-        } catch (error) {
-            console.error("Erro ao buscar notícia:", error);
-            return null;
-        }
-    }
-
-    async function buscarScreenshotPorUrl(url) {
-        const post = {
-            action: "screenshot",
-            url: url
-        };
-
-        try {
-            const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(post)
-            });
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`Screenshot API error! status: ${response.status}. Details: ${errorText}`);
-            }
-            const data = await response.json();
-            console.log("API Response Data (Screenshot):", data);
-            return data.screenshotBase64 || null; 
-        } catch (error) {
-            console.log(response.json());
-            console.error("Erro ao buscar screenshot:", error);
-            return null;
-        }
-    }
-
-    async function exibirNoticia(noticia) { 
-        newsContainer.innerHTML = '';
-
-        if (!noticia || !noticia.title) {
-            newsContainer.innerHTML = "<h1 class='text-center text-danger p-5'>Notícia não encontrada! (404)</h1>";
-            previewContainer.style.display = 'none';
-            qaSection.style.display = 'none';
-            return;
-        }
-
-        const noticiaHTML = `
-            <div class="card border-0">
-                <img src="${noticia.urlToImage || 'placeholder-image.jpg'}" onerror="this.style.display='none';" alt="Imagem da notícia" class="img-top">
-                <h1 class="card-title">${noticia.title}</h1>
-                <ul class="info-list">
-                    <li><strong>Fonte:</strong> ${noticia.source?.name || 'Desconhecida'}</li>
-                    <li><strong>Autor:</strong> ${noticia.author || 'Não informado'}</li>
-                    <li><strong>Publicado em:</strong> ${noticia.publishedAt ? new Date(noticia.publishedAt).toLocaleString() : 'Data não disponível'}</li>
-                </ul>
-                ${noticia.description ? `<p class="card-text"><strong>Descrição:</strong><br>${noticia.description}</p>` : `<p class="card-text"><strong>Descrição:</strong><br>Sem descrição adicional.</p>`}
-                <div class="text-center mt-4">
-                    <a href="${noticia.url}" target="_blank" rel="noopener noreferrer" class="btn-read">
-                        Ler matéria completa
-                    </a>
-                </div>
-            </div>
-        `;
-        newsContainer.innerHTML = noticiaHTML;
-
-        if (noticia.url) {
-            currentNoticiaUrl = noticia.url;
-            previewContainer.style.display = 'flex';
-            screenshotWrapper.innerHTML = '<p class="screenshot-message">Gerando preview da notícia...</p>';
-
-            const screenshotSrc = await buscarScreenshotPorUrl(currentNoticiaUrl);
-
-            if (screenshotSrc) {
-                const img = document.createElement('img');
-                img.id = 'website-screenshot-img'; 
-                img.src = screenshotSrc;
-                img.alt = `Screenshot da notícia: ${noticia.title}`;
-                img.onload = () => {
-                    screenshotWrapper.innerHTML = ''; 
-                    screenshotWrapper.appendChild(img); 
-                    screenshotWrapper.style.alignItems = 'flex-start'; 
-                }
-                img.onerror = () => {
-                    screenshotWrapper.innerHTML = '<p class="screenshot-message">Erro ao carregar a imagem do preview.</p>';
-                    screenshotWrapper.style.alignItems = 'center'; 
-                }
-                 
-                img.src = screenshotSrc;
-            } else {
-                screenshotWrapper.innerHTML = '<p class="screenshot-message">Não foi possível gerar o preview da notícia.</p>';
-                screenshotWrapper.style.alignItems = 'center'; 
-            }
-
-        } else {
-            previewContainer.style.display = 'none';
-            currentNoticiaUrl = null;
-        }
-
-        if (currentNoticiaUrl) {
-            qaSection.style.display = 'block';
-        } else {
-            qaSection.style.display = 'none';
-        }
-    }
-
-    function typeWriter(element, text, speed = 30) { 
+    function typeWriter(element, text, speed = 30) {
         element.innerHTML = "";
-        element.classList.add('typing-cursor');
+        element.classList.add("typing-cursor");
         let i = 0;
         function type() {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            } else {
-                 element.classList.remove('typing-cursor');
-            }
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            element.classList.remove("typing-cursor");
+        }
         }
         type();
     }
-    
-    sendButton.addEventListener('click', async () => {
-        const question = questionInput.value.trim();
-        if (!question || !currentNoticiaUrl) {
-            answerDisplay.textContent = "Por favor, digite uma pergunta. Certifique-se que uma notícia está carregada.";
-            return;
+
+    async function buscarNoticiaPorTitulo(title) {
+        const post = { action: "news", titulo: title };
+        const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+        });
+        const data = await response.json();
+        return data.noticias?.[0] || null;
+    }
+
+    async function buscarScreenshotPorUrl(url) {
+        const post = { action: "screenshot", url };
+        const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+        });
+        const data = await response.json();
+        return data.screenshotBase64 || null;
+    }
+
+    async function exibirNoticia(noticia) {
+        document.getElementById('noticia-loading').remove();
+
+        if (!noticia || !noticia.title) {
+        newsContainer.innerHTML = "<h1 class='text-center text-danger p-5'>Notícia não encontrada.</h1>";
+        return;
+        }
+
+        const noticiaHTML = `
+        <div class="card border-0">
+            <img src="${noticia.urlToImage || ''}" class="img-top" alt="Imagem da notícia">
+            <h1 class="card-title">${noticia.title}</h1>
+            <ul class="info-list">
+            <li><strong>Fonte:</strong> ${noticia.source?.name || 'Desconhecida'}</li>
+            <li><strong>Autor:</strong> ${noticia.author || 'Não informado'}</li>
+            <li><strong>Publicado em:</strong> ${new Date(noticia.publishedAt).toLocaleString()}</li>
+            </ul>
+            <p class="card-text">${noticia.description || 'Sem descrição adicional.'}</p>
+            <div class="text-center mt-4">
+            <a href="${noticia.url}" class="btn-read" target="_blank">Ler matéria completa</a>
+            </div>
+        </div>
+        `;
+        newsContainer.innerHTML = noticiaHTML;
+
+        currentNoticiaUrl = noticia.url;
+
+        if (currentNoticiaUrl) {
+        previewContainer.style.display = "flex";
+        screenshotWrapper.innerHTML = '<p class="screenshot-message">Gerando preview da notícia...</p>';
+        const screenshot = await buscarScreenshotPorUrl(currentNoticiaUrl);
+        if (screenshot) {
+            screenshotWrapper.innerHTML = `<img src="${screenshot}" id="website-screenshot-img" alt="Preview da notícia">`;
+        } else {
+            screenshotWrapper.innerHTML = `<p class="screenshot-message">Não foi possível gerar preview.</p>`;
+        }
+        qaSection.style.display = "block";
+        }
+    }
+
+    sendButton.addEventListener("click", async () => {
+        const pergunta = questionInput.value.trim();
+        if (!pergunta || !currentNoticiaUrl) {
+        answerDisplay.textContent = "Por favor, digite uma pergunta válida.";
+        return;
         }
 
         sendButton.disabled = true;
         answerDisplay.textContent = "Pensando...";
-        answerDisplay.classList.add('typing-cursor');
+        answerDisplay.classList.add("typing-cursor");
 
         const postData = {
-            action: "gemini", 
-            url: currentNoticiaUrl,
-            mensagem: question 
+        action: "gemini",
+        url: currentNoticiaUrl,
+        mensagem: pergunta
         };
 
         try {
-            const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(postData)
-            });
+        const response = await fetch('/eco-gestor/src/app/Services/EndPointAPIs.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(postData)
+        });
 
-            if (!response.ok) {
-                 const errorText = await response.text();
-                throw new Error(`API error! Status: ${response.status}. Details: ${errorText}`);
-            }
-
-            const data = await response.json();
-
-             
-            if (data.Resposta || data.answer) {
-                typeWriter(answerDisplay, data.Resposta || data.answer, 30);
-            } else {
-                answerDisplay.textContent = "Não foi possível obter uma resposta.";
-                answerDisplay.classList.remove('typing-cursor');
-            }
+        const data = await response.json();
+        const resposta = data.Resposta || data.answer;
+        if (resposta) {
+            typeWriter(answerDisplay, resposta, 20);
+        } else {
+            answerDisplay.textContent = "Não foi possível obter uma resposta.";
+            answerDisplay.classList.remove("typing-cursor");
+        }
 
         } catch (error) {
-            console.error("Erro ao chamar API Gemini:", error);
-            answerDisplay.textContent = `Erro ao processar a pergunta: ${error.message}`;
-             answerDisplay.classList.remove('typing-cursor');
-        } finally {
-            sendButton.disabled = false;
+        console.error("Erro ao chamar o Gemini:", error);
+        answerDisplay.textContent = "Erro ao obter resposta da IA.";
+        answerDisplay.classList.remove("typing-cursor");
         }
+
+        sendButton.disabled = false;
     });
-    
+
     (async () => {
         if (title) {
-            console.log("Buscando notícia com o título:", title);
-            newsContainer.innerHTML = '<div class="placeholder-content text-center p-5">Carregando notícia...</div>';
-            previewContainer.style.display = 'none'; 
-            qaSection.style.display = 'none'; 
-            const noticia = await buscarNoticiaPorTitulo(title);
-            await exibirNoticia(noticia); 
+        const spinner = document.createElement("div");
+        spinner.id = "noticia-loading";
+        spinner.classList.add("spinner-noticia");
+        newsContainer.innerHTML = "";
+        newsContainer.appendChild(spinner);
+
+        const noticia = await buscarNoticiaPorTitulo(title);
+        await exibirNoticia(noticia);
         } else {
-            newsContainer.innerHTML = "<p class='text-center text-warning p-5'>Nenhuma notícia selecionada. Verifique o parâmetro 'title' na URL.</p>";
-            previewContainer.style.display = 'none';
-            qaSection.style.display = 'none';
+        newsContainer.innerHTML = "<p class='text-center text-warning p-5'>Parâmetro inválido na URL.</p>";
         }
     })();
-</script>
-
-<style>
-    body {
-        background-color: #E6F0E9;
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding-top: 20px;
-        padding-bottom: 50px;
-    }
-
-    .page-container {
-        max-width: 1600px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-
-    .main-content-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        margin-bottom: 40px;
-        align-items: flex-start;
-    }
-
-    .news-container {
-        flex: 1;
-        min-width: 300px;
-        background-color: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        padding: 30px;
-    }
-
-    .website-preview-container {
-        flex: 1;
-        min-width: 300px;
-        height: 70vh;
-        max-height: 700px;
-        border: 1px solid #ccc;
-        border-radius: 15px;
-        overflow: hidden;
-        background-color: #f8f9fa;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        position: relative;
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .website-preview-container h3 {
-        text-align: center;
-        margin-bottom: 15px;
-        color: #2E7D32;
-        font-size: 20px;
-        flex-shrink: 0;
-    }
-
-    .website-screenshot-wrapper {
-         flex-grow: 1; 
-         overflow-y: auto; 
-         border: 1px solid #ddd;
-         border-radius: 8px;
-         background-color: #e9ecef; 
-         display: flex; 
-         justify-content: center;
-         align-items: center;
-         text-align: center;
-         min-height: 150px; 
-    }
-
-    #website-screenshot-img {
-        width: 100%; 
-        height: auto; 
-        display: block; 
-        
-    }
-
-    
-    .screenshot-message {
-        padding: 20px;
-        color: #666;
-        font-style: italic;
-    }
-
-     .qa-container {
-        background-color: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .qa-container h3 {
-        text-align: center;
-        color: #2E7D32;
-        margin-bottom: 20px;
-    }
-
-    #question-input {
-        width: 100%;
-        min-height: 80px;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        margin-bottom: 15px;
-        font-family: inherit;
-        font-size: 16px;
-        resize: vertical;
-    }
-
-    #send-question-btn {
-        display: block;
-        margin: 0 auto 20px auto;
-        background-color: #2E7D32;
-        color: #fff;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-    }
-
-    #send-question-btn:hover {
-        background-color: #1B5E20;
-    }
-     #send-question-btn:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
-    }
-
-    #answer-display {
-        margin-top: 20px;
-        padding: 15px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-        min-height: 50px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        font-size: 15px;
-        line-height: 1.6;
-        color: #333;
-    }
-
-    .typing-cursor::after {
-        content: '▋';
-        animation: blink 1s step-end infinite;
-        margin-left: 2px;
-        font-weight: bold;
-        color: #555;
-    }
-
-    @keyframes blink {
-        from, to { opacity: 1; }
-        50% { opacity: 0; }
-    }
-
-    
-    .news-container .card-title {
-        font-size: 28px;
-        font-weight: 700;
-        color: #2E7D32;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    
-    .news-container .card-subtitle {font-size: 18px; font-weight: 400; color: #555; margin-bottom: 25px; text-align: center;}
-    .news-container .card-text {font-size: 16px; color: #333; margin-bottom: 20px; line-height: 1.6;}
-    .news-container .info-list {list-style: none; padding: 0; margin-bottom: 25px; text-align: center;}
-    .news-container .info-list li {margin-bottom: 8px; font-size: 14px; color: #666;}
-    .news-container .btn-read { background-color: #2E7D32; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background-color 0.3s ease; display: inline-block; }
-    .news-container .btn-read:hover { background-color: #1B5E20; }
-    .news-container .img-top { width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; object-fit: cover; max-height: 350px; }
-    .news-container .text-center { text-align: center; }
-    .news-container .mt-4 { margin-top: 1.5rem !important; }
-    .news-container .my-5 { margin-top: 0 !important; margin-bottom: 0 !important; }
-</style>
+    </script>
+</body>
+</html>

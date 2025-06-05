@@ -1,26 +1,104 @@
-#card-container{
-     display: flex;
-     flex-wrap: wrap;
-     gap: 16px;
+body {
+  background-color: #111;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
 }
 
-.card {
-     display: flex;
-     width: calc(50% - 8px);
-     border: 1px solid #ccc;
-     padding: 16px;
-     border-radius: 8px;
-     box-sizing: border-box;
-     background: #AFD06E;
-   }
-
-.card #div-button{
-     display: flex;
-     justify-content: end;
-     align-items: end;
+.noticias-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
 }
-.card #div-button a{
-     width: 500px;
-     background-color: rgb(59, 128, 59);
-     border: none;
+
+.cabecalho-noticia {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.titulo {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #00e676;
+  margin-bottom: 0.5rem;
+}
+
+.descricao {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.grid-noticias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+}
+
+@media (max-width: 992px) {
+  .grid-noticias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-noticias {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.card-noticia {
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-noticia:hover {
+  transform: scale(1.02);
+}
+
+.img-top {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #00e676;
+  margin-bottom: 0.8rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #ccc;
+  flex: 1;
+}
+
+.btn-read {
+  background-color: #00e676;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-read:hover {
+  background-color: #00c853;
+  color: #fff;
 }
