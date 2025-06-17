@@ -197,3 +197,22 @@
   background-color: #00c853;
   color: #fff;
 }
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 20px;              
+  background: #4caf50;
+  color: #fff;
+  padding: 16px 24px;       
+  font-size: 1.1rem;        
+  line-height: 1.2;         
+  min-width: 220px;         
+  max-width: 80%;           
+  border-radius: 6px;       
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+}

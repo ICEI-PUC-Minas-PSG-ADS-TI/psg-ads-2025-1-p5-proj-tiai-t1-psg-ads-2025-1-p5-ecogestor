@@ -64,5 +64,15 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script Dica do dia -->
+  <script>
+  window.addEventListener('load', function() {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 15000);
+  });
+</script>
 </body>
 </html>

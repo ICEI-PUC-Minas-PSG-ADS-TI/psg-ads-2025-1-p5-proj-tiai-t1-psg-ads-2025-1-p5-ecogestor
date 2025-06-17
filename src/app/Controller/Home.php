@@ -6,25 +6,56 @@ use \App\Utils\View;
 use \App\Services\APINews;
 use \App\Services\APIGemini;
 
-class Home extends AbstractController{
+class Home extends AbstractController
+{
+    public static function index()
+    {
+        $api = new APIGemini();
 
-    public static function index(){
-        $data = [];
-        try {
-                $data = [
-                    'texto' => 'A Ecogestor é uma empresa comprometida com o futuro do planeta. Atuamos no ramo da reciclagem, promovendo soluções sustentáveis para a gestão de resíduos, com foco na preservação ambiental e na conscientização da sociedade.
-                                Nosso objetivo vai além da coleta e reaproveitamento de materiais. Aqui, você encontra dicas práticas para tornar seu dia a dia mais sustentável, além de notícias atualizadas sobre o universo da reciclagem, meio ambiente e inovações ecológicas.'
-                ];
-                      
-            
-        } catch (\Throwable $th) {
-            echo($th->getMessage());
+        // Sorteia tipo de mensagem
+        $modo = rand(0, 1);
+
+        if ($modo === 0) {
+            $prompt = <<<'PROMPT'
+Forneça exatamente 8 dicas curtas, objetivas e práticas de reciclagem (máx. duas frases cada). Retorne apenas um array JSON puro com essas dicas, sem blocos de código, sem markdown e sem texto extra.
+Exemplo:
+[
+  "Lave e seque embalagens plásticas antes de descartá-las.",
+  "Dobre caixas de papelão para otimizar espaço no coletor.",
+  "…"
+]
+PROMPT;
+        } else {
+            $prompt = <<<'PROMPT'
+Forneça exatamente 5 mensagens motivacionais curtas (máx. duas frases cada) que incentivem a reciclagem e a conscientização ambiental. Retorne apenas um array JSON puro com essas frases, sem blocos de código, sem markdown e sem texto extra.
+Exemplo:
+[
+  "Cada pequena ação conta: recicle hoje e cuide do amanhã.",
+  "Separar seu lixo é um gesto de amor pelo planeta.",
+  "…"
+]
+PROMPT;
         }
+
+        $raw  = $api->Ask($prompt)['Resposta'] ?? '';
+        $json = str_replace(['```json','```'], '', $raw);
+        $arr  = json_decode(trim($json), true);
+
+        if (!is_array($arr) || count($arr) === 0) {
+            $arr = $modo === 0
+                ? ['Lave e seque embalagens antes de reciclar.']
+                : ['Cada gesto importa: recicle e preserve o futuro.'];
+        }
+
+        // Escolhe mensagem do array
+        $mensagem = $arr[array_rand($arr)];
+
+        $data = [
+            'texto'    => 'A Ecogestor é uma empresa …',
+            'DICA_DIA' => $mensagem
+        ];
+
         $conteudo = View::render('home', $data);
         return self::getBase('Home', $conteudo);
-
     }
-
-
-
 }
