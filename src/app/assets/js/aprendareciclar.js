@@ -1,5 +1,5 @@
 /**
- * Autor: Bernardo Oliveira
+ * Autor: Bernardo Oliveira e Arthur
  */
 const aprendaReciclar = (function(){
 
@@ -34,12 +34,17 @@ const aprendaReciclar = (function(){
                 },
                 success: function(data) {
                     let json = JSON.parse(data);
+                    console.log(data)
                     let cards = montaCards(json);
                     Utils.removerLoading('#divResposta');
 
-                  $('#divResposta').html(cards);
-                  $('#divResposta')[0].scrollIntoView({ behavior: 'smooth' });
-                },
+                $('#divResposta').html(cards + gerarBotaoExportarPDF());
+                $('#divResposta')[0].scrollIntoView({ behavior: 'smooth' });
+
+                $('#exportarPDF').on('click', function() {
+                    exportarParaPDF();
+                });
+            },
                 error: function(xhr, status, erro) {
                     $('#divResposta').html(`<div class="text-center col-10 mb-2">
                                                 Houve um erro ao processar sua requisição, tente novamente mais tarde!
@@ -80,3 +85,58 @@ const aprendaReciclar = (function(){
 $(document).ready(function() {
     aprendaReciclar.bindEvents();
 })
+
+var gerarBotaoExportarPDF = () => {
+    return `
+        <div class="text-center col-10 mt-3">
+            <button id="exportarPDF" class="btn btn-danger">
+                Exportar Dicas para PDF
+            </button>
+        </div>
+    `;
+}
+
+var exportarParaPDF = () => {
+    const { jsPDF } = window.jspdf;
+    const elemento = document.getElementById('divResposta');
+    const botao = document.getElementById('exportarPDF');
+
+    // Logo da empresa
+    const logoImg = new Image();
+    logoImg.src = 'app/assets/images/logo-ecogestor.png'; // Ajuste conforme seu caminho
+
+    botao.style.display = 'none'; // Esconder botão antes da captura
+
+    logoImg.onload = function () {
+        html2canvas(elemento).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+
+            // Conversão de pixels para mm
+            const pdfWidth = canvas.width / 3.78;
+            const pdfHeight = canvas.height / 3.78;
+
+            const pdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight + 60]); // altura extra para cabeçalho
+
+            // Inserir logo
+            pdf.addImage(logoImg, 'PNG', 10, 10, 20, 20);
+
+            // Cabeçalho
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(18);
+            pdf.text("Guia de Reciclagem", pdfWidth / 2, 20, { align: "center" });
+
+            pdf.setFont("helvetica", "normal");
+            pdf.setFontSize(12);
+            pdf.text("Dicas para descartar corretamente seus resíduos", pdfWidth / 2, 28, { align: "center" });
+
+            // Adicionar imagem dos cards (abaixo do cabeçalho)
+            const margemSuperior = 40;
+            pdf.addImage(imgData, 'PNG', 0, margemSuperior, pdfWidth, pdfHeight);
+
+            pdf.save("dicas-reciclagem.pdf");
+
+            botao.style.display = 'inline-block'; // Mostrar botão novamente
+        });
+    };
+}
+
