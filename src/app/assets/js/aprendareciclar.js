@@ -103,15 +103,14 @@ var exportarParaPDF = () => {
 
     // Logo da empresa
     const logoImg = new Image();
-    logoImg.src = 'app/assets/images/logo-ecogestor.png'; // Ajuste conforme seu caminho
+    logoImg.src = 'app/assets/images/logo-ecogestor.png';
 
-    botao.style.display = 'none'; // Esconder botão antes da captura
+    botao.style.display = 'none'; 
 
     logoImg.onload = function () {
         html2canvas(elemento).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
 
-            // Conversão de pixels para mm
             const pdfWidth = canvas.width / 3.78;
             const pdfHeight = canvas.height / 3.78;
 
@@ -129,13 +128,12 @@ var exportarParaPDF = () => {
             pdf.setFontSize(12);
             pdf.text("Dicas para descartar corretamente seus resíduos", pdfWidth / 2, 28, { align: "center" });
 
-            // Adicionar imagem dos cards (abaixo do cabeçalho)
             const margemSuperior = 40;
             pdf.addImage(imgData, 'PNG', 0, margemSuperior, pdfWidth, pdfHeight);
 
             pdf.save("dicas-reciclagem.pdf");
 
-            botao.style.display = 'inline-block'; // Mostrar botão novamente
+            botao.style.display = 'inline-block'; 
         });
     };
 }
