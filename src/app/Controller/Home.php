@@ -1,10 +1,9 @@
-<?php 
+<?php
 
 namespace App\Controller;
 
-use \App\Utils\View;
-use \App\Services\APINews;
-use \App\Services\APIGemini;
+use App\Utils\View;
+use App\Services\APIGemini;
 
 class Home extends AbstractController
 {
@@ -12,47 +11,60 @@ class Home extends AbstractController
     {
         $api = new APIGemini();
 
-        // Sorteia tipo de mensagem
-        $modo = rand(0, 1);
 
-        if ($modo === 0) {
-            $prompt = <<<'PROMPT'
-Forneça exatamente 8 dicas curtas, objetivas e práticas de reciclagem (máx. duas frases cada). Retorne apenas um array JSON puro com essas dicas, sem blocos de código, sem markdown e sem texto extra.
-Exemplo:
+        $prompt = <<<'PROMPT'
+Forneça exatamente 6 sugestões detalhadas de reciclagem no formato de "Dica do Dia". Cada sugestão deve ser um objeto JSON com duas propriedades:
+
+1. "titulo": um título curto, objetivo e chamativo (até 6 palavras).  
+2. "descricao": uma explicação prática com no máximo três frases, fornecendo contexto e passo a passo sucinto.
+
+Retorne apenas um array JSON contendo esses objetos, sem blocos de código (```), sem markdown, sem texto extra e sem comentários.  
+Exemplo de saída:
+
 [
-  "Lave e seque embalagens plásticas antes de descartá-las.",
-  "Dobre caixas de papelão para otimizar espaço no coletor.",
-  "…"
+  {
+    "titulo": "Lave e seque plásticos",
+    "descricao": "Antes de descartar, enxágue restos de alimento e deixe suas embalagens plásticas secarem para evitar contaminação dos recicláveis."
+  },
+  {
+    "titulo": "Óleo de cozinha pode virar sabão!",
+    "descricao": "Não jogue óleo usado no ralo! Armazene em garrafa PET e doe para projetos que transformam em sabão ou biodiesel."
+  }
 ]
 PROMPT;
-        } else {
-            $prompt = <<<'PROMPT'
-Forneça exatamente 5 mensagens motivacionais curtas (máx. duas frases cada) que incentivem a reciclagem e a conscientização ambiental. Retorne apenas um array JSON puro com essas frases, sem blocos de código, sem markdown e sem texto extra.
-Exemplo:
-[
-  "Cada pequena ação conta: recicle hoje e cuide do amanhã.",
-  "Separar seu lixo é um gesto de amor pelo planeta.",
-  "…"
-]
-PROMPT;
-        }
 
-        $raw  = $api->Ask($prompt)['Resposta'] ?? '';
-        $json = str_replace(['```json','```'], '', $raw);
-        $arr  = json_decode(trim($json), true);
 
+        // 1) Chama o Gemini
+        $raw = $api->Ask($prompt)['Resposta'] ?? '';
+        // 2) Limpa markdown e faz decode
+        $json = str_replace(['```json', '```'], '', $raw);
+        $arr = json_decode(trim($json), true);
+
+        // 3) Fallback mínimo
         if (!is_array($arr) || count($arr) === 0) {
-            $arr = $modo === 0
-                ? ['Lave e seque embalagens antes de reciclar.']
-                : ['Cada gesto importa: recicle e preserve o futuro.'];
+            $arr = [
+                [
+                    'titulo' => 'Lave e seque plásticos',
+                    'descricao' => 'Enxágue restos de alimento e deixe secar antes de descartar.'
+                ]
+            ];
         }
 
-        // Escolhe mensagem do array
-        $mensagem = $arr[array_rand($arr)];
+        // 4) Escolhe um item aleatório
+        if (isset($arr[0]) && is_array($arr[0])) {
+            $item = $arr[array_rand($arr)];
+            $titulo = $item['titulo'];
+            $descricao = $item['descricao'];
+        } else {
+            $titulo = 'Dica do Dia';
+            $descricao = 'Cada gesto importa: recicle e preserve o futuro.';
+        }
 
+        // 5) Prepara dados para a view
         $data = [
-            'texto'    => 'A Ecogestor é uma empresa …',
-            'DICA_DIA' => $mensagem
+            'texto' => 'A Ecogestor é uma empresa comprometida com o futuro do planeta...',
+            'DICA_TITULO' => $titulo,
+            'DICA_DESCRICAO' => $descricao
         ];
 
         $conteudo = View::render('home', $data);

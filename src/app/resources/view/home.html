@@ -1,8 +1,5 @@
 <link rel="stylesheet" href="app/assets/css/home.css" />
 
-<!-- Dica do dia -->
-<div id="toast" class="toast">{{DICA_DIA}}</div>
-
 <!-- 1. Abertura institucional -->
 <section class="main-content">
   <div class="container-fluid main-container">
@@ -16,6 +13,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- 2. Notícias -->
 <section class="bloco-intercalado noticias-bloco">
@@ -35,6 +34,21 @@
       <div id="noticias-container" style="display: none;"></div>
     </div>
   </div>
+</section>
+
+<!-- 2. Dica do dia -->
+<section class="bloco-intercalado noticias-bloco">
+  <div class="intercalado-container">
+    <div class="intercalado-texto">
+      <h2 class="intercalado-titulo">{{DICA_TITULO}}</h2>
+      <p class="intercalado-descricao">
+        {{DICA_DESCRICAO}}
+      </p>
+    </div>
+  <div class="intercalado-imagem">
+  <img class="img_dica dica-do-dia" src="app/assets/images/DICA_DIA.png" alt="">
+</div>
+</div>
 </section>
 
 <!-- 3. Aprenda a reciclar -->
