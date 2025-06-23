@@ -29,30 +29,36 @@ class APIGemini
         ]);
     }
 
-    function Ask($pergunta){
-        // Realiza a requisição para a API do Gemini
+    function Ask($pergunta)
+    {
         try {
+            // Realiza a requisição para a API do Gemini
             $response = $this->client->post($this->url, [
                 'headers' => [
                     'Content-Type' => 'application/json'
                 ],
                 'json' => [
                     'contents' => [
-                        'parts' => [
-                            'text' => $pergunta
+                        [
+                            'parts' => [
+                                ['text' => $pergunta]
+                            ]
                         ]
                     ]
                 ]
             ]);
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-        }
-        $response = $response->getBody()->getContents();
-        $response = json_decode($response, true);
 
-        // Pega o texto de retorno da IA
-        $text = $response['candidates'][0]['content']['parts'][0]['text'];
-        return ['Resposta' => $text];
+            $body = $response->getBody()->getContents();
+            $responseData = json_decode($body, true);
+
+            // Pega o texto de retorno da IA
+            $text = $responseData['candidates'][0]['content']['parts'][0]['text'] ?? 'Sem resposta da IA.';
+            return ['Resposta' => $text];
+
+        } catch (\Throwable $th) {
+            // Se der qualquer erro (inclusive 503), retorna uma mensagem amigável
+            return ['Resposta' => '⚠️ O serviço Gemini está temporariamente fora do ar. Por favor, volte em alguns instantes.'];
+        }
     }
 }
 ?>
