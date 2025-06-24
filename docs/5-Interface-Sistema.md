@@ -1,36 +1,39 @@
 
 # 5. Interface do Sistema
 
-<span style="color:red">Pré-requisitos: <a href="4-Projeto-Solucao.md"> Projeto da Solução</a></span>
-
 _Visão geral da interação do usuário por meio das telas do sistema. Apresente as principais interfaces da plataforma._
 
-## 5.1. Tela principal do sistema
+## 5.1. Carrossel Principal do Sistema
 
-_Descrição da tela principal do sistema._
+![Tela principal do sistema](images/carrossel.png)
 
-[`Tela principal do sistema`](images/)
+## 5.2. Tela Home
 
+![Home](images/home_1.png)
+![Home](images/home_2.png)
+![Home](images/home_3.png)
+![Home](images/home_4.png)
 
-## 5.2. Telas do processo 1
+## 5.3. Tela de Notícias
 
-_Descrição da tela relativa à atividade 1._
+![Noticias](images/noticias.png)
 
-[`Tela da atividade 1`](images/)
+## 5.4 Tela de Detalhe das Notícias
 
-_Descrição da tela relativa à atividade 2._
+![Detalhe](images/descricao.png)
 
-[`Tela da atividade 2`](images/)
+### 5.4.1 Resposta da IA a uma pergunta:
+![Resposta IA](images/resposta_ia.png)
 
+## 5.5 Tela de Aprenda Reciclar
 
-## 5.3. Telas do processo 2
+![Tela da Aprenda a Reciclar](images/aprenda_reciclar.png)
 
-_Descrição da tela relativa à atividade 1._
+### 5.5.1 PDF gerado com as dicas
+![PDF de Dicas](images/aprenda_reciclar_pdf.png)
 
-[`Tela da atividade 1`](images/)
+## 5.6 Tela Sobre
 
-_Descrição da tela relativa à atividade 2._
-
-[`Tela da atividade 2`](images/)
+![Tela Sobre](images/sobre_nos.png)
 
 
