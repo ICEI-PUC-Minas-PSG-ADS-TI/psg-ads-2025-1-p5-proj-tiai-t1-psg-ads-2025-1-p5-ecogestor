@@ -88,8 +88,8 @@ $(document).ready(function() {
 
 var gerarBotaoExportarPDF = () => {
     return `
-        <div class="text-center mt-3">
-            <button id="exportarPDF" class="btn-read">
+        <div class="text-center col-10 mt-3">
+            <button id="exportarPDF" class="btn btn-danger">
                 Exportar Dicas para PDF
             </button>
         </div>
