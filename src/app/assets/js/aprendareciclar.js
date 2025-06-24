@@ -105,8 +105,9 @@ var exportarParaPDF = () => {
     const logoImg = new Image();
     logoImg.src = 'app/assets/images/logo-ecogestor.png';
 
+    botao.style.display = 'none'; 
+
     logoImg.onload = function () {
-        botao.style.display = 'none'; 
         html2canvas(elemento).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
 
